@@ -10,6 +10,10 @@
     <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}"> 
     <link rel="stylesheet" href="{{ asset('css/calculate.css') }}"> 
     <!-- <link rel="stylesheet" href="{{ asset('css/app.css') }}">  -->
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </head>
     <!-- Content Header (Page header) -->
 <body>
@@ -45,8 +49,8 @@
                                                         <label for="country_id"> Country </label>
                                                         <select class="form-control js-example-basic-single @error('country_id') is-invalid @enderror" name="country_id" required>
                                                             <option value=""selected disabled>Select</option>
-                                                            @foreach($pricings as $pricing)
-                                                            <option value="{{ $pricing->country_id }}">{{ $pricing->country->name }}</option>
+                                                            @foreach($countries as $country)
+                                                            <option value="{{ $country->id }}">{{ $country->name }}</option>
                                                             @endforeach
                                                         </select>
                                                         @error('country_id')
@@ -61,8 +65,8 @@
                                                         <label for="carrier_id"> Carriers </label>
                                                         <select class="form-control js-example-basic-single @error('carrier_id') is-invalid @enderror" name="carrier_id" required>
                                                             <option value=""selected disabled>Select</option>
-                                                            @foreach($pricings as $pricing)
-                                                            <option value="{{ $pricing->carrier_id }}">{{ $pricing->carrier->name }}</option>
+                                                            @foreach($carriers as $carrier)
+                                                            <option value="{{ $carrier->id }}">{{ $carrier->name }}</option>
                                                             @endforeach
                                                         </select>
                                                         @error('carrier_id')
@@ -77,8 +81,8 @@
                                                         <label for="category_id"> Category </label>
                                                         <select class="form-control js-example-basic-single @error('category') is-invalid @enderror" name="category_id" required>
                                                             <option value=""selected disabled>Select</option>
-                                                            @foreach($pricings as $pricing)
-                                                            <option value="{{ $pricing->category_id }}">{{ $pricing->category->name }}</option>
+                                                            @foreach($categories as $category)
+                                                            <option value="{{ $category->id }}">{{ $category->name }}</option>
                                                             @endforeach
                                                         </select>
                                                         @error('category_id')
@@ -91,7 +95,7 @@
                                                 <div class="col-md-2">
                                                     <div class="form-group">
                                                         <label for="weight"> Weight </label>
-                                                        <input type="number" name="weight" min="0" class="form-control @error('weight') is-invalid @enderror" id="weight" placeholder="Price">
+                                                        <input type="number" name="weight" min="0" class="form-control @error('weight') is-invalid @enderror" id="weight" placeholder="kg">
                                                         @error('weight')
                                                         <span class="invalid-feedback" role="alert">
                                                             <strong>{{ $message }}</strong>
@@ -110,6 +114,9 @@
                                                     <div class="form-group"><br>
                                                         <button type="submit" onclick="" class="btn btn-success">Submit</button>
                                                     </div>
+                                                          <button type="submit" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
+                                                            Open modal
+                                                          </button>
                                                 </div>
                                             </div>
                                          </div> 
@@ -118,55 +125,45 @@
                             </div>
                         </div>
                     </div><!-- /.card -->
-                    <div class="row price">
-                        <option  value="{{ $country }}">Country Name: {{ $pricing->country->name }}, </option>
-                        <option value="{{ $carrier }}">Carrier Name: {{ $pricing->carrier->name }}, </option>
-                        <option value="{{ $category }}">Category: {{ $pricing->category->name }}, </option>
-                        <option >Total Price: {{ $price }}.</option>
-                    </div><br>
+                     <div class="modal fade" id="myModal">
+                        <div class="modal-dialog modal-dialog-centered">
+                          <div class="modal-content">
+                          
+                            <!-- Modal Header -->
+                            <div class="modal-header">
+                              <h4 class="modal-title">Calculated Value</h4>
+                              <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            </div>
+                            
+                            <!-- Modal body -->
+                            <div class="modal-body">
+                                <div class="">
+                                    <option  value="{{ $country }}">Country Name: {{ $country->name }}, </option>
+                                    <option value="{{ $carrier }}">Carrier Name: {{ $carrier->name }}, </option>
+                                    <option value="{{ $category }}">Category: {{ $category->name }}, </option>
+                                    <option >Total Price: {{ $price }}.</option>
+                                </div><br>
+                            </div>
+                            
+                            <!-- Modal footer -->
+                            <div class="modal-footer">
+                                <button class="btn btn-success" onclick="window.print()">Print</button>
+                              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            </div>
+                            
+                          </div>
+                        </div>
+                      </div>
+                    
                 </div>
             </div><!-- /.row -->
         </div><!-- /.container-fluid -->
     </section>
-                    <button class="btn btn-info" onclick="printDiv('printable_area')">Print</button>
 <footer class="footer" id="printable_area">
   <div class="container-fluid clearfix">
     <span class="text-muted d-block d-sm-inline-block">Copyright ©  <a href="https://ekshop.gov.bd" target="_blank">EkShop | a2i</a> {{ date('Y')  }}</span>
   </div>
 </footer>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-<script>
-    // <!-- For Div Print --> 
-    function printDiv(printable_area) {
-        var printContents = document.getElementById(printable_area).innerHTML;
-        var originalContents = document.body.innerHTML;
-        document.body.innerHTML = printContents;
-        window.print();
-        document.body.innerHTML = originalContents;
-    }
-    // select 2 dropdown
-    $(".select2.form-control:not(.dont-select-me)").select2({
-        placeholder: "Select option",
-        allowClear: true
-    });
-    // for all type of alert
-        @if(Session::has('message'))
-    var type = "{{ Session::get('alert-type') }}";
-    switch (type) {
-        case 'info':
-            toastr.info("{{ Session::get('message') }}");
-            break;
-        case 'success':
-            toastr.success("{{ Session::get('message') }}");
-            break;
-        case 'warning':
-            toastr.warning("{{ Session::get('message') }}");
-            break;
-        case 'error':
-            toastr.error("{{ Session::get('message') }}");
-            break;
-    }
-    @endif
-</script>
 </body>
 </html>

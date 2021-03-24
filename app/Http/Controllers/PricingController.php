@@ -107,13 +107,16 @@ class PricingController extends Controller
     {
         
         $pricings = Pricing::all();
-         $carriers = Carrier::all();
+        $carriers = Carrier::all();
         $countries = Country::all();
         $categories = Category::all();
         return view('pricing.calculate', compact('pricings', 'countries', 'categories', 'carriers'));
     }
     public function priceCalculate(Request $request)
     {
+        $carriers = Carrier::all();
+        $countries = Country::all();
+        $categories = Category::all();
         $pricings = Pricing::all();
         $price = Pricing::select('price')
         ->where('country_id', $request->country_id)
@@ -125,6 +128,6 @@ class PricingController extends Controller
                 $country=$request->country_id;
                 $carrier=$request->carrier_id;
                 $category=$request->category_id;
-        return view('pricing.calculated', compact('pricings', 'price', 'country', 'carrier', 'category'));
+        return view('pricing.calculated', compact('pricings', 'countries', 'categories', 'carriers', 'price', 'country', 'carrier', 'category'));
     }
 }

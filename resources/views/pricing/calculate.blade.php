@@ -12,6 +12,8 @@
     <script src="js/jquery-3.5.1.min.js"></script>
     <link href="css/select2.min.css" rel="stylesheet" />
     <script src="js/select2.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+
 </head>
 
 <body>
@@ -63,8 +65,8 @@
                                                     <label for="carrier_id"> Carriers </label>
                                                     <select class="form-control js-example-basic-single @error('carrier_id') is-invalid @enderror" name="carrier_id" required>
                                                         <option value=""selected disabled>Select</option>
-                                                        @foreach($pricings as $pricing)
-                                                        <option value="{{ $pricing->carrier_id }}">{{ $pricing->carrier->name }}</option>
+                                                        @foreach($carriers as $carrier)
+                                                        <option value="{{ $carrier->id }}">{{ $carrier->name }}</option>
                                                         @endforeach
                                                     </select>
                                                     @error('carrier_id')
@@ -79,8 +81,8 @@
                                                     <label for="category_id"> Category </label>
                                                     <select class="form-control js-example-basic-single @error('category') is-invalid @enderror" name="category_id" required>
                                                         <option value=""selected disabled>Select</option>
-                                                        @foreach($pricings as $pricing)
-                                                        <option value="{{ $pricing->category_id }}">{{ $pricing->category->name }}</option>
+                                                        @foreach($categories as $category)
+                                                        <option value="{{ $category->id }}">{{ $category->name }}</option>
                                                         @endforeach
                                                     </select>
                                                     @error('category_id')
