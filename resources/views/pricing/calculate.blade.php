@@ -12,7 +12,7 @@
     <script src="js/jquery-3.5.1.min.js"></script>
     <link href="css/select2.min.css" rel="stylesheet" />
     <script src="js/select2.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="{{ asset('js/popper.min.js') }}"></script>
 
 </head>
 
@@ -95,7 +95,7 @@
                                             <div class="col-md-2">
                                                 <div class="form-group">
                                                     <label for="weight"> Weight </label>
-                                                    <input type="number" name="weight" min="0" class="form-control @error('weight') is-invalid @enderror" id="weight" placeholder="kg">
+                                                    <input type="number" name="weight" min="1" class="form-control @error('weight') is-invalid @enderror" id="weight" placeholder="kg">
                                                     @error('weight')
                                                     <span class="invalid-feedback" role="alert">
                                                         <strong>{{ $message }}</strong>

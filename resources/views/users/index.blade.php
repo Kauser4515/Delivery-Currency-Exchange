@@ -30,7 +30,6 @@
                                 <th>Phone</th>
                                 <th>Email Address</th>
                                 <th>User Role </th>
-                                <th>Status</th>
                                 <th>Actions</th>
                             </tr>
                             </thead>
@@ -50,14 +49,6 @@
                                     @endif
                                 </td>
                                 <td>
-                                    @if($user->status == 1)
-                                        <span class="badge bg-success">Active</span>
-                                    @else
-                                        <span class="badge bg-danger">Block</span>
-                                    @endif
-                                </td>
-                                <td>
-                                    <a href="{{ route('admin.user.show', $user->id) }}" class="btn btn-sm btn-primary"><span class="mdi mdi-eye"></span></a>
                                     <a href="{{ route('admin.user.edit', $user->id) }}" class="btn btn-sm btn-warning"><span class="mdi mdi-lead-pencil"></span></a>
                                 </td>
                             </tr>

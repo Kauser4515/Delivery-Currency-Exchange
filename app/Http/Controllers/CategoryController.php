@@ -67,9 +67,10 @@ class CategoryController extends Controller
      * @param  \App\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function edit(Category $category)
+    public function edit($id)
     {
-        //
+        $categories = Category::findOrFail($id);
+        return view('category.edit', compact('categories'));
     }
 
     /**
@@ -79,9 +80,27 @@ class CategoryController extends Controller
      * @param  \App\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Category $category)
+    public function update(Request $request,$id)
     {
-        //
+        $categories = Category::findOrFail($id);
+        $this->validate($request,[
+            'name' => 'required',
+        ]);
+        $category = new Category();
+        $category->name = $request->name;
+        $affected_row = $category->save();
+        if (!empty($affected_row)) {
+            $notification = array(
+                'message' => 'Advance update successfully.',
+                'alert-type' => 'success'
+            );
+        } else {
+            $notification = array(
+                'message' => 'Operation failed!',
+                'alert-type' => 'error'
+            );
+        }
+        return redirect()->back()->with($notification);
     }
 
     /**

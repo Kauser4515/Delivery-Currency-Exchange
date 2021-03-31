@@ -65,7 +65,7 @@
       <div class="collapse " id="Settings-pages">
         <ul class="nav flex-column sub-menu">
           <li class="nav-item ">
-            <a class="nav-link" href="{{ route('password.request') }}">Reset Password</a>
+            <!-- <a class="nav-link" href="{{ route('password.request') }}">Reset Password</a> -->
           </li>
           <li class="nav-item ">
             <a class="nav-link" href="{{ route('logout') }}"

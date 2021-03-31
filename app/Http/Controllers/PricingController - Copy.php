@@ -121,7 +121,7 @@ class PricingController extends Controller
         ->where('category_id', $request->category_id)
         ->first();
                 
-$country=$request->country_id;
+                $country=$request->country_id;
                 $carrier=$request->carrier_id;
                 $category=$request->category_id;
     if (isset($price))

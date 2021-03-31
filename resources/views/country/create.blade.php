@@ -1,9 +1,9 @@
 @extends('layouts.app')
 @section('title', 'Users')
  
-@push('css')
+@push('style')
     <!-- Bootstrap Select Css -->
-    <link href="{{ asset('assets/backend/plugins/bootstrap-select/css/bootstrap-select.css') }}" rel="stylesheet" />
+    <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}"> 
 @endpush
  
 @section('content')
@@ -78,6 +78,4 @@
 
 @push('script')
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <!-- Select Plugin Js -->
-    <script src="{{ asset('assets/backend/plugins/bootstrap-select/js/bootstrap-select.js') }}"></script>
 @endpush

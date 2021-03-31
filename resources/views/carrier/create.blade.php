@@ -2,6 +2,7 @@
 @section('title', 'Users')
  
 @push('style')
+    <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}"> 
 @endpush
  
 @section('content')
@@ -45,7 +46,7 @@
                                             <div class="col-md-11">
                                                 <div class="form-group">
                                                     <label for="name">Carrier Name<span class="text-danger">*</span></label>
-                                                    <input type="text" name="name" class="form-control @error('name') is-invalid @enderror" id="dname" placeholder="Type...">
+                                                    <input type="text" name="name" class="form-control @error('name') is-invalid @enderror" id="name" placeholder="Type...">
                                                     @error('name')
                                                     <span class="invalid-feedback" role="alert">
                                                         <strong>{{ $message }}</strong>

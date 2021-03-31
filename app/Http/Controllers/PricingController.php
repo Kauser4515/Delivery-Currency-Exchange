@@ -2,10 +2,9 @@
 
 namespace App\Http\Controllers;
  
-use App\Pricing;
-use App\Country;
-use App\Carrier;
-use App\Category;
+use Response;
+use Redirect;
+use App\{Pricing, Country, Carrier, Category};
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 
@@ -18,10 +17,9 @@ class PricingController extends Controller
      */
     public function index()
     {
-        $pricings = Pricing::all();
+        $pricings = Pricing::paginate(10);
         return view('pricing.index', compact('pricings'));
     }
-
     /**
      * Show the form for creating a new resource.
      *
@@ -104,8 +102,7 @@ class PricingController extends Controller
     }
     
     public function calculate(Request $request)
-    {
-        
+    {  
         $pricings = Pricing::all();
         $carriers = Carrier::all();
         $countries = Country::all();
@@ -122,12 +119,26 @@ class PricingController extends Controller
         ->where('country_id', $request->country_id)
         ->where('carrier_id', $request->carrier_id)
         ->where('category_id', $request->category_id)
-        ->first();
-                $price= $price->price;
-                $price=$price*$request->weight;
-                $country=$request->country_id;
-                $carrier=$request->carrier_id;
-                $category=$request->category_id;
-        return view('pricing.calculated', compact('pricings', 'countries', 'categories', 'carriers', 'price', 'country', 'carrier', 'category'));
+        ->first();     
+        $count=Country::findOrFail($request->country_id);
+        $carri=Carrier::findOrFail($request->carrier_id);
+        $categ=Category::findOrFail($request->category_id);
+        if (isset($price))
+        {
+            $price= $price->price;
+            $weight=$request->weight;
+            $price=$price*$weight;
+        return view('pricing.calculated', compact('pricings', 'countries', 'categories', 'carriers', 'price', 'count', 'carri', 'categ'));
+        }
+        else
+        {
+            $price='No price found';
+        return view('pricing.calculated', compact('pricings', 'countries', 'categories', 'carriers', 'price', 'count', 'carri', 'categ'));
+        }
+    }
+
+    public function calculateBy() 
+    {
+       //
     }
 }

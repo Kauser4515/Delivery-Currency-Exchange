@@ -2,8 +2,14 @@
 @section('title', 'Users')
  
 @push('style')
+    <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}"> 
+   <!-- Select2  -->
+   <section class="content">
+        <script src="{{ asset('js/jquery-3.5.1.min.js') }}"></script>
+    <link href="{{ asset('css/select2.min.css') }}" rel="stylesheet" />
+    <script src="{{ asset('js/select2.min.js') }}"></script>
 @endpush
- 
+
 @section('content')
     <!-- Content Header (Page header) -->
     <div class="content-header">
@@ -23,7 +29,7 @@
         </div><!-- /.container-fluid -->
     </div>
     <!-- /.content-header -->
-<section class="content">
+
     <div class="container-fluid">
         <!-- /.row -->
         <div class="row">
@@ -43,7 +49,7 @@
                                             <div class="col-md-2">
                                                     <div class="form-group form-float">
                                                         <label for="country_id"> Country </label>
-                                                        <select class="form @error('country_id') is-invalid @enderror" name="country_id" required>
+                                                        <select class="form-control js-example-basic-single @error('country_id') is-invalid @enderror" name="country_id" required>
                                                             <option value=""selected disabled>Select</option>
                                                             @foreach($countries as $country)
                                                             <option value="{{ $country->id }}">{{ $country->name }}</option>
@@ -59,7 +65,7 @@
                                                 <div class="col-md-2">
                                                     <div class="form-group">
                                                         <label for="carrier_id"> Carrier </label>
-                                                        <select class="form @error('carrier_id') is-invalid @enderror" name="carrier_id" required>
+                                                        <select class="form-control js-example-basic-single @error('carrier_id') is-invalid @enderror" name="carrier_id" required>
                                                             <option value=""selected disabled>Select</option>
                                                             @foreach($carriers as $carrier)
                                                             <option value="{{ $carrier->id }}">{{ $carrier->name }}</option>
@@ -75,7 +81,7 @@
                                                 <div class="col-md-2">
                                                     <div class="form-group">
                                                         <label for="category_id"> Category </label>
-                                                        <select class="form @error('category') is-invalid @enderror" name="category_id" required>
+                                                        <select class="form-control js-example-basic-single @error('category') is-invalid @enderror" name="category_id" required>
                                                             <option value=""selected disabled>Select</option>
                                                             @foreach($categories as $category)
                                                             <option value="{{ $category->id }}">{{ $category->name }}</option>
@@ -102,7 +108,7 @@
                                         </div>
                                      </div>   
                                     <div class="text-right">
-                                        <a href="{{ route('pricing.index') }}" class="btn btn-danger"><i class="fas fa-times"></i> Cancel </a>
+                                        <a href="{{ route('pricing.index') }}" class="btn btn-danger"><i class="fas fa-times"></i> Back </a>
                                         <button type="submit" class="btn btn-primary"><i class="fas fa-save"></i> Submit </button>
                                     </div>
                                 </form>
@@ -118,9 +124,13 @@
         </div>
         <!-- /.row -->
     </div><!-- /.container-fluid -->
-
 </section>
 @endsection
 
 @push('script')
+    <script type="text/javascript">
+        $(document).ready(function() {
+        $('.js-example-basic-single').select2();
+        });
+    </script>
 @endpush

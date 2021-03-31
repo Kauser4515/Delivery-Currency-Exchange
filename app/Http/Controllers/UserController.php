@@ -44,7 +44,6 @@ class UserController extends Controller
     {
         request()->validate([
             'name' => ['required', 'max:50'],
-            'phone' => ['required', 'max:20'],
             'email' => ['required', 'max:50'],
             'password' => ['required', 'max:50'],
         ]);

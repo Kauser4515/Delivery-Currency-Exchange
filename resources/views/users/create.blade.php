@@ -44,8 +44,8 @@
                                     <div class="row">
                                         <div class="col-md-12">
                                             <div class="form-group">
-                                                <label for="name">Name <span class="text-danger">*</span></label>
-                                                <input type="text" name="name" class="form-control" id="name" placeholder="Enter name">
+                                                <label for="name">Name<span class="text-danger">*</span></label>
+                                                <input type="text" name="name" class="form-control @error('name') is-invalid @enderror" id="name" placeholder="Enter name">
                                                 @error('name')
                                                 <span class="invalid-feedback" role="alert">
                                                 <strong></strong>
@@ -59,7 +59,7 @@
                                     <div class="row">
                                         <div class="col-md-12">
                                             <div class="nav-item">
-                                                <label for="phone">Phone <span class="text-danger">*</span></label>
+                                                <label for="phone">Phone</label>
                                                 <input type="text" name="phone" class="form-control" id="phone" placeholder="Enter phone">
                                                 @error('phone')
                                                 <span class="invalid-feedback" role="alert">
@@ -74,7 +74,7 @@
                                     <div class="row">
                                         <div class="col-md-12">
                                             <div class="nav-item">
-                                                <label for="email">Email </label>
+                                                <label for="email">Email<span class="text-danger">*</span></label>
                                                 <input type="email" name="email" class="form-control @error('email') is-invalid @enderror" id="email" value="" placeholder="Enter email">
                                                 @error('email')
                                                 <span class="invalid-feedback" role="alert">
@@ -89,7 +89,7 @@
                                     <div class="row">
                                         <div class="col-md-12">
                                             <div class="form-group">
-                                                <label for="password">Password </label>
+                                                <label for="password">Password<span class="text-danger">*</span></label>
                                                 <input type="password" name="password" class="form-control @error('password') is-invalid @enderror" id="password" value="" placeholder="Enter password">
                                                 @error('password')
                                                 <span class="invalid-feedback" role="alert">
@@ -102,23 +102,9 @@
                                 </div>
                                 <div class="container">
                                   <div class="row">
-                                    <div class="col-md-4">
-                                            <div class="nav-item">
-                                                <label for="employee_id">Job Status</label>
-                                                <select class="nav-link @error('job_status') is-invalid @enderror" name="job_status">
-                                                    <option value="1">Active</option>
-                                                    <option value="0">Inactive</option>
-                                                </select>
-                                                @error('job_status')
-                                                    <span class="invalid-feedback" role="alert">
-                                                        <strong>{{ $message }}</strong>
-                                                    </span>
-                                                @enderror
-                                            </div>
-                                        </div>
                                       <div class="col-md-8">
                                           <div class="nav-item">
-                                              <label for="image">   Upload Logo</label>
+                                              <label for="image">Upload Photo</label>
                                               <div class="custom-file">
                                                   <input type="file" name="image" class="nav-link">
                                               </div>                       
