@@ -44,7 +44,7 @@
                             <tbody id="tbody">
                             @foreach($pricings as $index => $pricing)
                             <tr>
-                                <td>{{ $pricing->id}}</td>
+                                <td>{{ $pricing->id}} </td>
                                 <td>{{ $pricing->country->name }}</td>
                                 <td>{{ $pricing->carrier->name }}</td>
                                 <td>{{ $pricing->category->name }}</td>
@@ -53,7 +53,12 @@
                             @endforeach
                             </tbody>
                             </table>  
-                        </div>                          
+                        </div> 
+                        <div class="card-footer clearfix">
+                            <ul class="pagination pagination-sm m-0 float-right">
+                                {{ $pricings->links() }}
+                            </ul>
+                        </div>                         
                     </div>
                 </div>
             </div>

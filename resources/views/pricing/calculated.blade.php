@@ -160,11 +160,11 @@
         </div><!-- /.row -->
     </div><!-- /.container-fluid -->
 </section>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+</body>
 <footer class="footer" id="printable_area">
   <div class="container-fluid clearfix">
     <span class="text-muted d-block d-sm-inline-block">Copyright ©  <a href="https://ekshop.gov.bd" target="_blank">EkShop | a2i</a> {{ date('Y')  }}</span>
   </div>
 </footer>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-</body>
 </html>

@@ -59,6 +59,20 @@
     <li class="nav-item ">
       <a class="nav-link" data-toggle="collapse" href="#Settings-pages" aria-expanded="" aria-controls="user-pages">
         <i class="menu-icon mdi mdi-lock-outline"></i>
+        <span class="menu-title">Test</span>
+        <i class="menu-arrow"></i>
+      </a>
+      <div class="collapse " id="Settings-pages">
+        <ul class="nav flex-column sub-menu">
+          <li class="nav-item ">
+            <a class="nav-link" href="{{ route('test') }}">Create</a>
+          </li>
+        </ul>
+      </div>
+    </li>
+    <li class="nav-item ">
+      <a class="nav-link" data-toggle="collapse" href="#Settings-pages" aria-expanded="" aria-controls="user-pages">
+        <i class="menu-icon mdi mdi-lock-outline"></i>
         <span class="menu-title">Settings</span>
         <i class="menu-arrow"></i>
       </a>
