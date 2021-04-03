@@ -12,9 +12,9 @@ Route::get('admin', "Auth\LoginController@showLoginForm");
 	Route::resource('country', 'CountryController');
 	Route::resource('carrier', 'CarrierController');
 	Route::resource('category', 'CategoryController');
-// Route::resource('test', 'TestController');
-Route::get('test', 'TestController@ajaxRequest')->name('test');
-Route::post('test', 'TestController@ajaxRequestPost')->name('test');
+Route::resource('test', 'TestController');
+// Route::get('test', 'TestController@ajaxRequest')->name('test');
+// Route::post('test', 'TestController@ajaxRequestPost')->name('test');
 /*Admin Rout Start*/
 Route::view('/dashboard', 'dashboard');
 Route::group(['prefix'=>'admin', 'as' => 'admin.'], function()

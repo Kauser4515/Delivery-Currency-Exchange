@@ -2,13 +2,13 @@
 @section('title', 'Users')
  
 @push('style')
-    <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}"> 
+<link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
+    
 
 @endpush
  
 @section('content')
-    <!-- Content Header (Page header) -->
-    <div class="content-header">
+      <div class="content-header">
         <div class="container-fluid">
             <div class="row mb-2"> 
                 <div class="col-sm-6">
@@ -25,101 +25,110 @@
         </div><!-- /.container-fluid -->
     </div>
     <!-- /.content-header -->
-<section class="content">
-    <div class="container">
-        <h1>Ajax Data Insert</h1>
-        <form action="" class="btn-submit" method="POST">
+ <section class="content">
+        <div class="container-fluid">
+            <!-- /.row -->
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title mb-0">New Category</h3>
+                            <a class="btn btn-primary btn-sm" href="{{ route('category.index') }}"><i class="fa fa-plus"></i> All Categories</a>
+                        </div> 
+                        <!-- /.card-header -->
+                        <div class="card-body">
+                            <div class="row justify-content-center">
+                                <div class="col-md-6">
+                                    <form role="form" action="{{ route('test.store') }}" method="post" autocomplete="off">
+                                        @csrf
+                                        <div class="row">
+                                            <div class="col-lg-12 margin-tb">
+                                                <div class="pull-left">
+                                                    <h2>Add New User</h2>
+                                                </div>
+                                                <div class="pull-right">
+                                                    <a class="btn btn-primary" href="#"> Back</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                           
+                                        @if ($errors->any())
+                                            <div class="alert alert-danger">
+                                                <strong>Whoops!</strong> There were some problems with your input.<br><br>
+                                                <ul>
+                                                    @foreach ($errors->all() as $error)
+                                                        <li>{{ $error }}</li>
+                                                    @endforeach
+                                                </ul>
+                                            </div>
+                                        @endif
 
-           <div class="form-group">
-                <label>Country:</label>
-                <input type="text" name="country" class="form-control" placeholder="country" required="">
-
+                                        <div class="form-group">
+                                                <input type="hidden" name="_token" id="csrf" value="{{Session::token()}}">
+                                            <label for="country">Country:</label>
+                                            <input type="text" class="form-control" id="country" placeholder="Enter country" name="country">
+                                          </div>
+                                          <div class="form-group">
+                                            <label for="carrier">Carrier:</label>
+                                            <input type="carrier" class="form-control" id="carrier" placeholder="Enter carrier" name="carrier">
+                                          </div>
+                                          <button type="submit" class="btn btn-primary" id="butsave">Submit</button>
+                                        <script>
+                                        $(document).ready(function() {
+                                           
+                                            $('#butsave').on('click', function() {
+                                              var country = $('#country').val();
+                                              var carrier = $('#carrier').val();
+                                              if(country!="" && carrier!="" ){
+                                                /*  $("#butsave").attr("disabled", "disabled"); */
+                                                  $.ajax({
+                                                      url: "/userData",
+                                                      type: "POST",
+                                                      data: {
+                                                          _token: $("#csrf").val(),
+                                                          type: 1,
+                                                          country: country,
+                                                          carrier: carrier,
+                                                      },
+                                                      cache: false,
+                                                      success: function(dataResult){
+                                                          console.log(dataResult);
+                                                          var dataResult = JSON.parse(dataResult);
+                                                          if(dataResult.statusCode==200){
+                                                            window.location = "/userData";              
+                                                          }
+                                                          else if(dataResult.statusCode==201){
+                                                             alert("Error occured !");
+                                                          }
+                                                          
+                                                      }
+                                                  });
+                                              }
+                                              else{
+                                                  alert('Please fill all the field !');
+                                              }
+                                          });
+                                        });
+                                        </script>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /.card-body -->
+                        <!-- <div class="card-footer clearfix">
+                        </div> -->
+                    </div>
+                    <!-- /.card -->
+                </div>
             </div>
-            <div class="form-group">
-                <label>Carrier:</label>
-                <input type="text" name="carrier" class="form-control" placeholder="carrier" required="">
-            </div>
-
-           
-            <div class="form-group">
-                <button class="btn btn-success">Submit</button>
-            </div>
-
-        </form>
-    </div>
-</section>
+            <!-- /.row -->
+        </div><!-- /.container-fluid -->
+    </section>
 @endsection
 
 @push('script')
-    <script src = "https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-<script type="text/javascript">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
-
-    $.ajaxSetup({
-        headers: {
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-        }
-    });
-
-    $(".btn-submit").click(function(e){
-
-        e.preventDefault();
-
-        var country = $("input[name=country]").val();
-        var carrier = $("input[name=carrier]").val();
-        var url = '{{ url('postinsert') }}';
-
-        $.ajax({
-           url:url,
-           method:'POST',
-           data:{
-                  Code:country, 
-                  Chief:carrier
-                },
-           success:function(response){
-              if(response.success){
-                  alert(response.message) //Message come from controller
-              }else{
-                  alert("Error")
-              }
-           },
-           error:function(error){
-              console.log(error)
-           }
-        });
-    });
-
-</script>
-<script type="text/javascript">
-     $.ajaxSetup({
-        headers: {
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-        }
-    });
-
-    $(".btn-submit").click(function(e){
-
-        e.preventDefault();
-
-        var data = $(this).serialize();
-        console.log(data);
-        var url = '{{ url('postinsert') }}';
-
-        $.ajax({
-           url:url,
-           method:'POST',
-           data:data,
-           success:function(response){
-              if(response.success){
-                  alert(response.message) //Message come from controller
-              }else{
-                  alert("Error")
-              }
-           },
-           error:function(error){
-              console.log(error)
-           }
-        });
-    });
-</script>
 @endpush

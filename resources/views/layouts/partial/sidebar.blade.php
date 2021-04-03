@@ -65,7 +65,7 @@
       <div class="collapse " id="Settings-pages">
         <ul class="nav flex-column sub-menu">
           <li class="nav-item ">
-            <a class="nav-link" href="{{ route('test') }}">Create</a>
+            <a class="nav-link" href="{{ route('test.create') }}">Create</a>
           </li>
         </ul>
       </div>

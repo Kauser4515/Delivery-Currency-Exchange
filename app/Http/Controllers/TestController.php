@@ -36,18 +36,17 @@ class TestController extends Controller
      */
     public function store(Request $request)
     {
-        \DB::table('tests')->insert([
-            'country' => $request->Code, //This Code coming from ajax request
-            'carrier' => $request->Chief, //This Chief coming from ajax request
+         $request->validate([
+            'country' => 'required',
+            'carrier' => 'required',
         ]);
-
-        return response()->json(
-            [
-                'success' => true,
-                'message' => 'Data inserted successfully'
-            ]
-        );
+        Test::create($request->all());
+        return redirect()->back();
+        // return json_encode(array(
+        //     "statusCode"=>200
+        // ));
     }
+    
 
     /**
      * Display the specified resource.
@@ -93,24 +92,5 @@ class TestController extends Controller
     {
         //
     }
-    public function ajaxRequest()
-    {
 
-        return view('test.create');
-    }
-    public function ajaxRequestPost(Request $request)
-    {
-
-        \DB::table('tests')->insert([
-            'country' => $request->Code, //This Code coming from ajax request
-            'carrier' => $request->Chief, //This Chief coming from ajax request
-        ]);
-
-        return response()->json(
-            [
-                'success' => true,
-                'message' => 'Data inserted successfully'
-            ]
-        );
-    }
 }
