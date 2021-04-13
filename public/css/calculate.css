@@ -21,19 +21,37 @@ align-content: center;
 }
 .card{
 height: auto;
-margin-top: 22%;
+margin-top: 17%;
 margin-bottom: auto;
 width: 100%;
 background-color: rgba(0,0,0,0.5) !important;
 color: white;
 }
 .price{
-  padding-left: 20%;
+  padding-left: 5%;
   padding-top: 2%;
+}
+.total{
+  font-size: 18px;
+   font-weight: bold
+}
+.t6{
+	padding-top: 6%;
+}
+.center{
+	text-align: center;
 }
 .foot{
 padding:18% 0 2%;
 }
 .footer{
-padding:10% 0 2%; 
+padding:4% 0 1%; 
 }
+
+#hideValuesOnSelect {
+      display: ;
+   }
+@media screen {
+   #printlogo {display: none;}
+   #printfooter {display: none;}
+              }

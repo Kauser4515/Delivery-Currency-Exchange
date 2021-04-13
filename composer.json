@@ -14,7 +14,9 @@
         "laravel/framework": "5.8.*",
         "laravel/tinker": "^1.0",
         "yajra/laravel-datatables": "^1.5",
-        "yajra/laravel-datatables-oracle": "~9.0"
+        "yajra/laravel-datatables-oracle": "~9.0",
+        "fadion/fixerio": "~1.0",
+        "ranium/laravel-fixerio": "~1.2.0"
     },
     "require-dev": {
         "beyondcode/laravel-dump-server": "^1.0",

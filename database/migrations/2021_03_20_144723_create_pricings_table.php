@@ -1,5 +1,4 @@
 <?php
-
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
@@ -15,10 +14,12 @@ class CreatePricingsTable extends Migration
     {
         Schema::create('pricings', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('price', 15);
+            $table->double('price', 15);
             $table->bigInteger('country_id')->unsigned();
             $table->bigInteger('carrier_id')->unsigned();
             $table->bigInteger('category_id')->unsigned()->nullable();
+            $table->bigInteger('type_id')->unsigned()->nullable();
+            $table->bigInteger('file_id')->unsigned()->nullable();
             $table->foreign('country_id')
                 ->references('id')->on('countries')
                 ->onDelete('cascade');
@@ -27,6 +28,12 @@ class CreatePricingsTable extends Migration
                 ->onDelete('cascade');
             $table->foreign('category_id')
                 ->references('id')->on('categories')
+                ->onDelete('cascade');
+            $table->foreign('type_id')
+                ->references('id')->on('types')
+                ->onDelete('cascade');
+            $table->foreign('file_id')
+                ->references('id')->on('files')
                 ->onDelete('cascade');
             $table->timestamps();
         });

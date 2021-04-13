@@ -2,11 +2,9 @@
 @section('title', 'Users')
  
 @push('style')
-<link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
-    
-
+    <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}"> 
 @endpush
- 
+
 @section('content')
       <div class="content-header">
         <div class="container-fluid">
@@ -18,7 +16,7 @@
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a href="{{ route('pricing.index') }}">Dashboard</a></li>
                         <li class="breadcrumb-item"><a href="#">Category</a></li>
-                        <li class="breadcrumb-item active">New Carrier</li> 
+                        <li class="breadcrumb-item active">New Test</li> 
                     </ol>
                 </div><!-- /.col -->
             </div><!-- /.row -->
@@ -32,26 +30,15 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header">
-                            <h3 class="card-title mb-0">New Category</h3>
-                            <a class="btn btn-primary btn-sm" href="{{ route('category.index') }}"><i class="fa fa-plus"></i> All Categories</a>
+                            <h3 class="card-title mb-0">New Test</h3>
+                            <a class="btn btn-primary btn-sm" href="{{ route('category.index') }}"><i class="fa fa-plus"></i> All Test</a>
                         </div> 
                         <!-- /.card-header -->
                         <div class="card-body">
                             <div class="row justify-content-center">
                                 <div class="col-md-6">
                                     <form role="form" action="{{ route('test.store') }}" method="post" autocomplete="off">
-                                        @csrf
-                                        <div class="row">
-                                            <div class="col-lg-12 margin-tb">
-                                                <div class="pull-left">
-                                                    <h2>Add New User</h2>
-                                                </div>
-                                                <div class="pull-right">
-                                                    <a class="btn btn-primary" href="#"> Back</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                           
+                                        @csrf 
                                         @if ($errors->any())
                                             <div class="alert alert-danger">
                                                 <strong>Whoops!</strong> There were some problems with your input.<br><br>
@@ -62,7 +49,6 @@
                                                 </ul>
                                             </div>
                                         @endif
-
                                         <div class="form-group">
                                                 <input type="hidden" name="_token" id="csrf" value="{{Session::token()}}">
                                             <label for="country">Country:</label>
@@ -75,7 +61,6 @@
                                           <button type="submit" class="btn btn-primary" id="butsave">Submit</button>
                                         <script>
                                         $(document).ready(function() {
-                                           
                                             $('#butsave').on('click', function() {
                                               var country = $('#country').val();
                                               var carrier = $('#carrier').val();
@@ -100,7 +85,6 @@
                                                           else if(dataResult.statusCode==201){
                                                              alert("Error occured !");
                                                           }
-                                                          
                                                       }
                                                   });
                                               }
@@ -130,5 +114,4 @@
 @push('script')
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
 @endpush

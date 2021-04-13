@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<html>
 <head>
   <title>Calculator</title>
   <meta charset="utf-8">
@@ -8,15 +9,12 @@
   <meta name="_token" content="{{ csrf_token() }}">
   <link rel="shortcut icon" href="{{ asset('/favicon.ico') }}">
   <!-- plugin css -->
-    
-     
   <link rel="stylesheet" type="text/css" href="{{ asset('assets/plugins/@mdi/font/css/materialdesignicons.min.css') }}">
   <link rel="stylesheet" type="text/css" href="{{ asset('assets/plugins/perfect-scrollbar/perfect-scrollbar.css') }}">
   <!-- end plugin css -->
   @stack('plugin-styles')
   <!-- common css -->
   <link rel="stylesheet" type="text/css" href="{{ asset('css/app.css') }}">
-
   <!-- end common css -->
   @stack('style')
 </head>
@@ -38,8 +36,7 @@
   </div>
   <!-- base js -->
 @push('script')
-
-  <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.min.js"></script> 
+  <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
   <script type="text/javascript" src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.min.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <script type="text/javascript" src="{{ asset('js/app.js') }}"></script>

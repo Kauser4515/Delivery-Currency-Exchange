@@ -42,6 +42,7 @@ class CarrierController extends Controller
         ]);
         $carrier = new Carrier();
         $carrier->name = $request->name;
+        $carrier->status = $request->status;
         $carrier->save();
         // Toastr::success('Carrier Successfully Saved :)' ,'Success');
         return redirect()->route('carrier.index');
@@ -64,9 +65,10 @@ class CarrierController extends Controller
      * @param  \App\Carrier  $carrier
      * @return \Illuminate\Http\Response
      */
-    public function edit(Carrier $carrier)
+    public function edit($id)
     {
-        //
+        $carriers = Carrier::findOrFail($id);
+        return view('carrier.edit', compact('carriers'));
     }
 
     /**
@@ -76,9 +78,30 @@ class CarrierController extends Controller
      * @param  \App\Carrier  $carrier
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Carrier $carrier)
+    public function update(Request $request, $id)
     {
-        //
+        request()->validate([
+            'name' => ['required'],
+        ]);
+        $carrier = Carrier::find($request->id); //form id
+        $carrier->id = Request::input('id');
+        $carrier->name = Request::input('name');
+        $carrier->status = Request::input('name');
+        return $carrier;
+        $carrier->save();
+
+        if (!empty($affected_row)) {
+            $notification = array(
+                'message' => 'Carrier update successfully.',
+                'alert-type' => 'success'
+            );
+        } else {
+            $notification = array(
+                'message' => 'Operation failed!',
+                'alert-type' => 'error'
+            );
+        }
+        return redirect()->back()->with($notification);
     }
 
     /**

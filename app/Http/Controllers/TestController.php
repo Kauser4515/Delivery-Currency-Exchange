@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Test;
+use Fadion\Fixerio\Facades\Exchange;
+use Fadion\Fixerio\Facades\Currency;
 use Illuminate\Http\Request;
+use Response;
 
 class TestController extends Controller
 {
@@ -14,7 +17,55 @@ class TestController extends Controller
      */
     public function index()
     {
-        //
+
+
+
+        $url="https://free.currconv.com/api/v7/convert?q=USD_BDT&compact=ultra&apiKey=47cfd2148c9401f636fe";
+$ch = curl_init();
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+curl_setopt($ch, CURLOPT_URL,$url);
+$result=curl_exec($ch);
+curl_close($ch);
+$rate= json_decode($result, true);
+$BDT_from_USD= $rate['USD_BDT'];
+$charge=round($BDT_from_USD,0,PHP_ROUND_HALF_UP);
+        return ($BDT_from_USD);
+        
+// return view('test.index');
+
+
+
+
+
+
+$tests = Test::all();
+       $exchange = new Exchange(
+            [
+    // Base URI is used with relative requests
+    'base_uri' => 'http://data.fixer.io/api/latest?access_key=f2540f8d2d750a5eeb769e0bee39bf52&format=1',
+    ]);
+
+        // $exchange->base(Currency::USD);
+        // $exchange->symbols(Currency::EUR, Currency::GBP);
+        $tests = $exchange;
+        return ($tests);
+
+        return view('test.index',compact('tests'));
+        return ($tests);
+
+// $exchange->base('EUR');
+// $exchange->symbols('USD', 'EUR', 'GBP');
+//         $rates = $exchange->get();
+       // $rates = (new Exchange())->symbols(Currency::USD, Currency::GBP)->get();
+       // $rates = (new Exchange())->get();             
+ // $exchange = new Exchange();
+        // $exchange->base(Currency::EUR);
+        // $exchange->symbols(Currency::EUR, Currency::GBP);
+        // $rates = $exchange->get();
+        // $rates = Exchange::base(Currency::USD)->get();
+        //$rates = (new Exchange())->symbols(Currency::USD, Currency::GBP)->get();
+        // 
+        return view('test.index');
     }
 
     /**

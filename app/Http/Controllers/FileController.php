@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Country;
+use App\File;
 use Illuminate\Http\Request;
 
-class CountryController extends Controller
+class FileController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,10 +14,10 @@ class CountryController extends Controller
      */
     public function index()
     {
-        $countries = Country::paginate(15);
-        return view('country.index', compact('countries'));
+        $files = File::all();
+        return view('file.index', compact('files'));
     }
- 
+
     /**
      * Show the form for creating a new resource.
      *
@@ -25,8 +25,8 @@ class CountryController extends Controller
      */
     public function create()
     {
-        $countries = Country::all();
-        return view('country.create', compact('countries'));
+        $files = File::all();
+        return view('file.create', compact('files'));
     }
 
     /**
@@ -40,22 +40,20 @@ class CountryController extends Controller
         $this->validate($request,[
             'name' => 'required',
         ]);
-        $country = new Country();
-        $country->name = $request->name;
-        $country->save();
-        // $country->carriers()->attach($request->carriers);
-        // $country->type()->attach($request->tags);
-        // Toastr::success('Country Successfully Saved :)' ,'Success');
-        return redirect()->route('country.index');
+        $file = new File();
+        $file->name = $request->name;
+        $file->save();
+        // Toastr::success('File Successfully Saved :)' ,'Success');
+        return redirect()->route('file.index');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Country  $country
+     * @param  \App\File  $file
      * @return \Illuminate\Http\Response
      */
-    public function show(Country $country)
+    public function show(File $file)
     {
         //
     }
@@ -63,10 +61,10 @@ class CountryController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Country  $country
+     * @param  \App\File  $file
      * @return \Illuminate\Http\Response
      */
-    public function edit(Country $country)
+    public function edit(File $file)
     {
         //
     }
@@ -75,10 +73,10 @@ class CountryController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Country  $country
+     * @param  \App\File  $file
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Country $country)
+    public function update(Request $request, File $file)
     {
         //
     }
@@ -86,10 +84,10 @@ class CountryController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Country  $country
+     * @param  \App\File  $file
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Country $country)
+    public function destroy(File $file)
     {
         //
     }

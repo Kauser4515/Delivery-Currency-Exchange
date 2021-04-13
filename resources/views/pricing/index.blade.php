@@ -14,7 +14,7 @@
                 <ol class="breadcrumb float-sm-right">
                     <li class="breadcrumb-item"><a href="{{ route('pricing.index') }}">Dashboard</a></li>
                     <li class="breadcrumb-item"><a href="#">Calculator</a></li>
-                    <li class="breadcrumb-item active">Calculate</li> 
+                    <li class="breadcrumb-item active">Calculated Value</li> 
                 </ol>
             </div>
         </div>
@@ -26,7 +26,7 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-header">
-                        <h3 class="card-title mb-0">Calculate</h3>
+                        <h3 class="card-title mb-0">Calculated Values</h3>
                         <a class="btn btn-primary btn-sm" href="{{ route('pricing.create') }}"><i class="fa fa-plus"></i> Add Calculation Value</a>
                     </div>
                     <!-- /.card-header -->
@@ -37,7 +37,9 @@
                                 <th>SL</th>
                                 <th>Country</th>
                                 <th>Carrier</th>
-                                <th>Category</th>
+                                <th>Carrier Type</th>
+                                <th>File Type</th>
+                                <th>Weight Category</th>
                                 <th>Price</th>
                             </tr>
                             </thead>
@@ -47,6 +49,8 @@
                                 <td>{{ $pricing->id}} </td>
                                 <td>{{ $pricing->country->name }}</td>
                                 <td>{{ $pricing->carrier->name }}</td>
+                                <td>{{ $pricing->type->name }}</td>
+                                <td>{{ $pricing->file->name }}</td>
                                 <td>{{ $pricing->category->name }}</td>
                                 <td>{{ $pricing->price }}</td>
                             </tr>

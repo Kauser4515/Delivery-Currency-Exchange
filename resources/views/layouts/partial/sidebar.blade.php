@@ -32,15 +32,12 @@
     </li>
     <li class="nav-item ">
       <a class="nav-link" data-toggle="collapse" href="#Attendance-pages" aria-expanded="" aria-controls="user-pages">
-        <i class="menu-icon mdi mdi-calendar-clock"></i>
+        <i class="menu-icon mdi mdi-calculator-variant"></i>
         <span class="menu-title">Calculator</span>
         <i class="menu-arrow"></i>
       </a>
       <div class="collapse " id="Attendance-pages">
         <ul class="nav flex-column sub-menu">
-          <!-- <li class="nav-item ">
-            <a class="nav-link" href="{{ route('price.calculate') }}">Calculate</a>
-          </li> -->
           <li class="nav-item ">
             <a class="nav-link" href="{{ route('pricing.index') }}">Calculated Value</a>
           </li>
@@ -51,21 +48,13 @@
             <a class="nav-link" href="{{ route('carrier.create') }}">Carrier</a>
           </li>
           <li class="nav-item ">
-            <a class="nav-link" href="{{ route('category.create') }}">Category</a>
+            <a class="nav-link" href="{{ route('type.create') }}">Carrier Type</a>
           </li>
-        </ul>
-      </div>
-    </li>
-    <li class="nav-item ">
-      <a class="nav-link" data-toggle="collapse" href="#Settings-pages" aria-expanded="" aria-controls="user-pages">
-        <i class="menu-icon mdi mdi-lock-outline"></i>
-        <span class="menu-title">Test</span>
-        <i class="menu-arrow"></i>
-      </a>
-      <div class="collapse " id="Settings-pages">
-        <ul class="nav flex-column sub-menu">
           <li class="nav-item ">
-            <a class="nav-link" href="{{ route('test.create') }}">Create</a>
+            <a class="nav-link" href="{{ route('file.create') }}">File Type</a>
+          </li>
+          <li class="nav-item ">
+            <a class="nav-link" href="{{ route('category.create') }}">Category</a>
           </li>
         </ul>
       </div>
@@ -79,7 +68,6 @@
       <div class="collapse " id="Settings-pages">
         <ul class="nav flex-column sub-menu">
           <li class="nav-item ">
-            <!-- <a class="nav-link" href="{{ route('password.request') }}">Reset Password</a> -->
           </li>
           <li class="nav-item ">
             <a class="nav-link" href="{{ route('logout') }}"

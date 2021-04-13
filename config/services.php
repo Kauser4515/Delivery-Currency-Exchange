@@ -43,5 +43,8 @@ return [
             'tolerance' => env('STRIPE_WEBHOOK_TOLERANCE', 300),
         ],
     ],
-
+    
+    'fixer'=>[
+    'key'=>env("http://data.fixer.io/api/latest?access_key=f2540f8d2d750a5eeb769e0bee39bf52&format=1"),
+    ]
 ];

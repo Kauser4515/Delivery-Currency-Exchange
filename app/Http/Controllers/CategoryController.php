@@ -86,7 +86,6 @@ class CategoryController extends Controller
         $this->validate($request,[
             'name' => 'required',
         ]);
-        $category = new Category();
         $category->name = $request->name;
         $affected_row = $category->save();
         if (!empty($affected_row)) {

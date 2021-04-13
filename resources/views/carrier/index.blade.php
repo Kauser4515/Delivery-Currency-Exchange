@@ -38,6 +38,8 @@
                             <tr>
                                 <th>SL</th>
                                 <th>Country</th>
+                                <th>Status</th>
+                                <th>Actions</th>
                             </tr>
                             </thead>
                             <tbody id="tbody">
@@ -45,6 +47,10 @@
                             <tr>
                                 <td>{{ $carrier->id}}</td>
                                 <td>{{ $carrier->name }}</td>
+                                <td>{{ $carrier->status }}</td>
+                                <td>
+                                    <a href="{{ route('carrier.edit', $carrier->id) }}" class="btn btn-sm btn-warning"><i class="fas fa-save"></i></a>
+                                </td>
                             </tr>
                             @endforeach
                             </tbody>

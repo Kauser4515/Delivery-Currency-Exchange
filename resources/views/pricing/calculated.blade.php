@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<html>
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -6,22 +7,20 @@
     <!-- CSRF Token -->
     <meta name="_token" content="{{ csrf_token() }}">
     <link rel="shortcut icon" href="{{ asset('/favicon.ico') }}">
-
-    <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}"> 
-    <link rel="stylesheet" href="{{ asset('css/calculate.css') }}"> 
-    <!-- <link rel="stylesheet" href="{{ asset('css/app.css') }}">  -->
-
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/calculate.css') }}">
+    <!-- Select2  -->
+    <script type="" src="js/jquery-3.5.1.min.js"></script>
+    <link href="css/select2.min.css" rel="stylesheet" />
+    <script src="js/select2.min.js"></script>
+    <script src="{{ asset('js/popper.min.js') }}"></script>
 </head>
     <!-- Content Header (Page header) -->
 <body>
     <div class="content-header">
         <div class="container-fluid">
             <div class="row mb-2">
-                <div class="col-1">
-                </div>
+                <div class="col-1"></div>
                 <div class="col-6">
                     <!-- <h1 class="m-0 text-dark">Calculator</h1> -->
                 </div><!-- /.col -->
@@ -44,13 +43,14 @@
                                     @csrf
                                     <div class="container">
                                         <div class="row">
+                                            <div class="col-md-1"></div>
                                             <div class="col-md-2">
                                                 <div class="form-group form-float">
                                                     <label for="country_id"> Country </label>
-                                                    <select class="form-control js-example-basic-single @error('country_id') is-invalid @enderror" name="country_id" required>
-                                                        <option value=""selected disabled>Select</option>
-                                                        @foreach($countries as $countr)
-                                                        <option value="{{ $countr->id }}">{{ $countr->name }}</option>
+                                                    <select class="form-control js-example-basic-single  @error('country_id') is-invalid @enderror" name="country_id" required>
+                                                        <option value="" selected disabled>Select</option>
+                                                        @foreach($countries as $country)
+                                                        <option value="{{ $country->id }}">{{ $country->name }}</option>
                                                         @endforeach
                                                     </select>
                                                     @error('country_id')
@@ -59,14 +59,16 @@
                                                         </span>
                                                     @enderror
                                                 </div>
-                                            </div>
+                                            </div><!-- /.col-md-2 -->
                                             <div class="col-md-2">
                                                 <div class="form-group">
                                                     <label for="carrier_id"> Carriers </label>
-                                                    <select class="form-control js-example-basic-single @error('carrier_id') is-invalid @enderror" name="carrier_id" required>
-                                                        <option value=""selected disabled>Select</option>
+                                                    <select onchange="displayDivDemo('hideValuesOnSelect', this)" class="form-control js-example-basic-single @error('carrier_id') is-invalid @enderror" name="carrier_id" required>
+                                                        <option value="" selected disabled>Select</option>
                                                         @foreach($carriers as $carrier)
-                                                        <option value="{{ $carrier->id }}">{{ $carrier->name }}</option>
+                                                        @if($carrier->status == 1)
+                                                            <option value="{{ $carrier->id }}">{{ $carrier->name }}</option>
+                                                        @endif
                                                         @endforeach
                                                     </select>
                                                     @error('carrier_id')
@@ -74,13 +76,45 @@
                                                             <strong>{{ $message }}</strong>
                                                         </span>
                                                     @enderror
-                                                </div> 
+                                                </div>
                                             </div>
+                                            <div id="hideValuesOnSelect" class="col-md-2">
+                                                <div class="form-group">
+                                                    <label for="type_id">Carriers Type</label>
+                                                    <select class="form-control js-example-basic-single @error('type_id') is-invalid @enderror" name="type_id">
+                                                        <option value="" selected disabled>Select</option>
+                                                        @foreach($types as $type)
+                                                        <option value="{{ $type->id }}">{{ $type->name }}</option>
+                                                        @endforeach
+                                                    </select>
+                                                    @error('type_id')
+                                                        <span class="invalid-feedback" role="alert">
+                                                            <strong>{{ $message }}</strong>
+                                                        </span>
+                                                    @enderror
+                                                </div>
+                                            </div><!-- /.col-md-2 -->
+                                            <div class="col-md-2">
+                                                <div class="form-group">
+                                                    <label for="file_id">File</label>
+                                                    <select class="form-control js-example-basic-single @error('file_id') is-invalid @enderror" name="file_id" required>
+                                                        <option value="" selected disabled>Select</option>
+                                                        @foreach($files as $file)
+                                                        <option value="{{ $file->id }}">{{ $file->name }}</option>
+                                                        @endforeach
+                                                    </select>
+                                                    @error('file_id')
+                                                        <span class="invalid-feedback" role="alert">
+                                                            <strong>{{ $message }}</strong>
+                                                        </span>
+                                                    @enderror
+                                                </div>
+                                            </div><!-- /.col-md-2 -->
                                             <div class="col-md-2">
                                                 <div class="form-group">
                                                     <label for="category_id"> Category </label>
                                                     <select class="form-control js-example-basic-single @error('category') is-invalid @enderror" name="category_id" required>
-                                                        <option value=""selected disabled>Select</option>
+                                                        <option value="" selected disabled>Select</option>
                                                         @foreach($categories as $category)
                                                         <option value="{{ $category->id }}">{{ $category->name }}</option>
                                                         @endforeach
@@ -92,44 +126,49 @@
                                                     @enderror
                                                 </div>
                                             </div>
-                                            <div class="col-md-2">
+                                            <!-- <div class="col-md-2">
                                                 <div class="form-group">
                                                     <label for="weight"> Weight </label>
-                                                    <input type="number" name="weight" min="1" class="form-control @error('weight') is-invalid @enderror" id="weight" placeholder="kg">
+                                                    <input type="number" name="weight" min="1"  class="form-control center @error('weight') is-invalid @enderror" id="weight" placeholder="kg">
                                                     @error('weight')
                                                     <span class="invalid-feedback" role="alert">
                                                         <strong>{{ $message }}</strong>
                                                     </span>
                                                     @enderror
                                                 </div>
-                                            </div>
-
-                                            <div class="col-md-2">
-                                                <div class="form-group">
-                                                    <label for="combWeight"> Amount </label>
-                                                    <input type="number" name="combWeight" min="0" class="form-control" id="combWeight" value="{{$price}}" placeholder="00.0" readonly>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-2">
+                                            </div> -->
+                                            <div class="col-md-12">
                                                 <div class="form-group"><br>
-                                                    <button type="submit" onclick="" class="btn btn-success">Submit</button>
+                                                    <button type="submit" onclick="" class="btn btn-success">=</button>
                                                 </div>
                                                   <!-- <button type="submit" class="btn btn-primary" data-toggle="modal" data-target="#myModal">modal
                                                   </button> -->
                                             </div>
+                                            <div class="col-md-5"></div>
+                                            <div class="col-md-2">
+                                                <div class="form-group">
+                                                    <label for="combWeight"> Amount </label>
+                                                    <input type="number" name="combWeight" min="0" class="form-control center" id="combWeight" value="{{$price}}" placeholder="00.0" readonly>
+                                                </div>
+                                            </div>
                                         </div>
-                                     </div> 
+                                     </div>
                                 </form>
                             </div>
                         </div>
                     </div>
                 </div><!-- /.card -->
-                <div class="row price">
-                    <option>Country Name: {{ $count->name }}, </option>
-                    <option>Carrier Name: {{ $carri->name }}, </option>
-                    <option>Category: {{ $categ->name }}, </option>
-                    <option >Total Price: {{ $price }}.</option>
+                <div class="row price" id="printableArea">
+                    <div id="printlogo"><img src="assets/images/a2i.PNG" width="111px" /><br><br></div>
+                    <option>Country Name : {{ $count->name }}, </option>
+                    <option>Carrier : {{ $carri->name }}, </option>
+                    <option>Carrier Type: {{ $typ->name }}, </option>
+                    <option>File Type : {{ $fil->name }}, </option>
+                    <option>Category : {{ $categ->name }}, </option>
+                    <option class="total">Total Price : {{ $price }}</option>
+                    <div id="printfooter"><br><br><span class="text-muted d-block text-sm-left d-sm-inline-block">Copyright © EkShop | a2i {{ date('Y')  }}</span></div>
                 </div><br>
+                <input class="btn btn-success" type="button" onclick="printDiv('printableArea')" value="print" />
                  <div class="modal fade" id="myModal">
                     <div class="modal-dialog modal-dialog-centered">
                       <div class="modal-content">
@@ -149,18 +188,39 @@
                         </div>
                         <!-- Modal footer -->
                         <div class="modal-footer">
-                            <button class="btn btn-success" onclick="window.print()">Print</button>
+                            
                           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                         </div>
-                        
+
                       </div>
                     </div>
                   </div>
             </div>
         </div><!-- /.row -->
     </div><!-- /.container-fluid -->
+<script type="text/javascript">
+    $(document).ready(function() {
+    $('.js-example-basic-single').select2();
+    });
+</script>
 </section>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script type="text/javascript">
+        function printDiv(divName) {
+     var printContents = document.getElementById(divName).innerHTML;
+     var originalContents = document.body.innerHTML;
+
+     document.body.innerHTML = printContents;
+
+     window.print();
+
+     document.body.innerHTML = originalContents;
+}
+    </script>
+    <script>
+       function displayDivDemo(id, elementValue) {
+          document.getElementById(id).style.display = elementValue.value != 1 ? 'block' : 'none';
+       }
+    </script>
 </body>
 <footer class="footer" id="printable_area">
   <div class="container-fluid clearfix">

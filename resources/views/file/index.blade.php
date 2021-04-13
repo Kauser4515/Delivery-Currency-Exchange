@@ -13,14 +13,13 @@
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
                     <li class="breadcrumb-item"><a href="{{ route('pricing.index') }}">Dashboard</a></li>
-                    <li class="breadcrumb-item"><a href="#">Category</a></li>
-                    <li class="breadcrumb-item active">Show Category</li> 
+                    <li class="breadcrumb-item"><a href="#">File</a></li>
+                    <li class="breadcrumb-item active">Show File</li> 
                 </ol>
             </div>
         </div>
     </div>
 </div>
-
 <section class="content">
     <div class="container-fluid">     
         <div class="row float-center">
@@ -29,8 +28,8 @@
             <div class="col-8">
                 <div class="card">
                     <div class="card-header">
-                        <h3 class="card-title mb-0">All Country</h3>
-                        <a class="btn btn-primary btn-sm" href="{{ route('category.create') }}"><i class="fa fa-plus"></i> Add New Country</a>
+                        <h3 class="card-title mb-0">All Files</h3>
+                        <a class="btn btn-primary btn-sm" href="{{ route('file.create') }}"><i class="fa fa-plus"></i> Add New File</a>
                     </div>
                     <!-- /.card-header -->
                     <div id="printable_area">
@@ -38,22 +37,17 @@
                             <thead>
                             <tr>
                                 <th>SL</th>
-                                <th>Country</th>
-                                <th>Rate</th>
-                                <th>Action</th>
+                                <th>File</th>
                             </tr>
                             </thead>
                             <tbody id="tbody">
+                            @foreach($files as $index => $file)
                             <tr>
-                                <td></td>
-                                <td><input type="text" name="name" class="form-control" value="" id="name"> 
-                                </td>
-                                @foreach($tests as $index => $test)
-                            <td>{{$test}}</td>
+                                <td>{{ $file->id}}</td>
+                                <td>{{ $file->name }}</td>
+                            </tr>
                             @endforeach
-                                 <td><a href="" class="btn btn-sm btn-warning"><i class="fas fa-save"></i></a></td>
                             </tbody>
-                            
                             </table>  
                         </div>                          
                     </div>
@@ -63,8 +57,5 @@
 </section>
 @endsection
 @push('script')
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-<script>
-
-</script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 @endpush

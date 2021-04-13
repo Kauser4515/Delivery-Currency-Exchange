@@ -1,10 +1,9 @@
 <?php
-
-namespace App\Http\Controllers;
  
+namespace App\Http\Controllers;
 use Response;
 use Redirect;
-use App\{Pricing, Country, Carrier, Category};
+use App\{Pricing, Country, Carrier, Category, Type, File};
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 
@@ -13,17 +12,17 @@ class PricingController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Http\Response|\Illuminate\View\View
      */
     public function index()
     {
-        $pricings = Pricing::paginate(10);
+        $pricings = Pricing::paginate(15);
         return view('pricing.index', compact('pricings'));
     }
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Http\Response|\Illuminate\View\View
      */
     public function create()
     {
@@ -31,7 +30,9 @@ class PricingController extends Controller
         $carriers = Carrier::all();
         $countries = Country::all();
         $categories = Category::all();
-        return view('pricing.create', compact('pricings', 'countries', 'categories', 'carriers'));
+        $files = File::all();
+        $types = Type::all();
+        return view('pricing.create', compact('pricings', 'countries', 'categories', 'carriers', 'types', 'files'));
     }
 
     /**
@@ -51,6 +52,8 @@ class PricingController extends Controller
         $pricing->country_id = $request->country_id;
         $pricing->carrier_id = $request->carrier_id;
         $pricing->category_id = $request->category_id;
+        $pricing->file_id = $request->file_id;
+        $pricing->type_id = $request->type_id;
         $pricing->save();
         return redirect()->route('pricing.index');
     }
@@ -100,44 +103,62 @@ class PricingController extends Controller
     {
         //
     }
-    
+
     public function calculate(Request $request)
-    {  
+    {
         $pricings = Pricing::all();
         $carriers = Carrier::all();
         $countries = Country::all();
         $categories = Category::all();
-        return view('pricing.calculate', compact('pricings', 'countries', 'categories', 'carriers'));
+        $files = File::all();
+        $types = Type::all();
+        return view('pricing.calculate', compact('pricings', 'countries', 'categories', 'carriers', 'types', 'files'));
     }
     public function priceCalculate(Request $request)
     {
         $carriers = Carrier::all();
         $countries = Country::all();
         $categories = Category::all();
+        $types = Type::all();
+        $files = File::all();
         $pricings = Pricing::all();
         $price = Pricing::select('price')
         ->where('country_id', $request->country_id)
         ->where('carrier_id', $request->carrier_id)
         ->where('category_id', $request->category_id)
-        ->first();     
+        ->where('type_id', $request->type_id)
+        ->where('file_id', $request->file_id)
+        ->first();
         $count=Country::findOrFail($request->country_id);
         $carri=Carrier::findOrFail($request->carrier_id);
+        $typ=Type::findOrFail($request->type_id);
+        $fil=File::findOrFail($request->file_id);
         $categ=Category::findOrFail($request->category_id);
         if (isset($price))
         {
             $price= $price->price;
             $weight=$request->weight;
-            $price=$price*$weight;
-        return view('pricing.calculated', compact('pricings', 'countries', 'categories', 'carriers', 'price', 'count', 'carri', 'categ'));
+            $url="https://free.currconv.com/api/v7/convert?q=USD_BDT&compact=ultra&apiKey=1b884d1843928ea6bd5e";
+            $ch = curl_init();
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+            curl_setopt($ch, CURLOPT_URL,$url);
+            $result=curl_exec($ch);
+            curl_close($ch);
+            $rate= json_decode($result, true);
+            $BDT_from_USD= $rate['USD_BDT'];
+            $BDT= ($price*$BDT_from_USD)+1;
+
+            $price=round($BDT,0,PHP_ROUND_HALF_UP);
+        return view('pricing.calculated', compact('pricings', 'countries', 'categories', 'carriers', 'price', 'count', 'carri', 'categ', 'types', 'files', 'fil', 'typ'));
         }
         else
         {
             $price='No price found';
-        return view('pricing.calculated', compact('pricings', 'countries', 'categories', 'carriers', 'price', 'count', 'carri', 'categ'));
+        return view('pricing.calculated', compact('pricings', 'countries', 'categories', 'carriers', 'price', 'count', 'carri', 'categ', 'types', 'files','fil', 'typ'));
         }
     }
 
-    public function calculateBy() 
+    public function calculateBy()
     {
        //
     }

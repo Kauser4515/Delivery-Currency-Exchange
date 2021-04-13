@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Country;
+use App\Type;
 use Illuminate\Http\Request;
+use Response;
 
-class CountryController extends Controller
+class TypeController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,10 +15,10 @@ class CountryController extends Controller
      */
     public function index()
     {
-        $countries = Country::paginate(15);
-        return view('country.index', compact('countries'));
+        $types: = types::all();
+        return view('type.index', compact('types:'));
     }
- 
+
     /**
      * Show the form for creating a new resource.
      *
@@ -25,8 +26,8 @@ class CountryController extends Controller
      */
     public function create()
     {
-        $countries = Country::all();
-        return view('country.create', compact('countries'));
+        $types: = Type::all();
+        return view('type.create', compact('types:'));
     }
 
     /**
@@ -40,22 +41,20 @@ class CountryController extends Controller
         $this->validate($request,[
             'name' => 'required',
         ]);
-        $country = new Country();
-        $country->name = $request->name;
-        $country->save();
-        // $country->carriers()->attach($request->carriers);
-        // $country->type()->attach($request->tags);
-        // Toastr::success('Country Successfully Saved :)' ,'Success');
-        return redirect()->route('country.index');
+        $type = new Type();
+        $type->name = $request->name;
+        $type->save();
+        // Toastr::success('Type Successfully Saved :)' ,'Success');
+        return redirect()->route('type.index');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Country  $country
+     * @param  \App\Type  $type
      * @return \Illuminate\Http\Response
      */
-    public function show(Country $country)
+    public function show(Type $type)
     {
         //
     }
@@ -63,10 +62,10 @@ class CountryController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Country  $country
+     * @param  \App\Type  $type
      * @return \Illuminate\Http\Response
      */
-    public function edit(Country $country)
+    public function edit(Type $type)
     {
         //
     }
@@ -75,10 +74,10 @@ class CountryController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Country  $country
+     * @param  \App\Type  $type
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Country $country)
+    public function update(Request $request, Type $type)
     {
         //
     }
@@ -86,10 +85,10 @@ class CountryController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Country  $country
+     * @param  \App\Type  $type
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Country $country)
+    public function destroy(Type $type)
     {
         //
     }

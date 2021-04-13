@@ -1,14 +1,23 @@
 @extends('layouts.app')
 @section('title', 'Users')
- 
-@push('style')
-    <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}"> 
-   <!-- Select2  -->
-    <script src="{{ asset('js/jquery-3.5.1.min.js') }}"></script>
-    <link href="{{ asset('css/select2.min.css') }}" rel="stylesheet" />
-    <script src="{{ asset('js/select2.min.js') }}"></script>
+@push('script')
+    <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
 @endpush
+@push('script')
+    <!-- Select2  -->
+    <!-- <script type="text/javascript" src="{{ asset('js/jquery-3.5.1.min.js') }}"></script> -->
+    <link href="{{ asset('css/select2.min.css') }}" rel="stylesheet">
+    <script src="{{ asset('js/select2.min.js') }}"></script>
+    <script src="{{ asset('js/popper.min.js') }}"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+        $('.js-example-basic-single').select2();
+        });
+    </script>
+@endpush
+
 @section('content')
+     
 <section class="content">
     <!-- Content Header (Page header) -->
 <div class="content-header">
@@ -21,7 +30,7 @@
                 <ol class="breadcrumb float-sm-right">
                     <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
                     <li class="breadcrumb-item"><a href="#">Prising</a></li>
-                    <li class="breadcrumb-item active">New Pricing</li> 
+                    <li class="breadcrumb-item active">New Pricing</li>
                 </ol>
             </div><!-- /.col -->
         </div><!-- /.row -->
@@ -35,7 +44,7 @@
             <div class="card">
                 <div class="card-header">
                     <h3 class="card-title mb-0">Add New Country</h3>
-                </div> 
+                </div>
                 <!-- /.card-header -->
                 <div class="card-body">
                     <div class="row justify-content-center">
@@ -45,26 +54,26 @@
                                 <div class="container">
                                     <div class="row">
                                         <div class="col-md-2">
-                                                <div class="form-group form-float">
-                                                    <label for="country_id"> Country </label>
-                                                    <select class="form-control js-example-basic-single @error('country_id') is-invalid @enderror" name="country_id" required>
-                                                        <option value=""selected disabled>Select</option>
-                                                        @foreach($countries as $country)
-                                                        <option value="{{ $country->id }}">{{ $country->name }}</option>
-                                                        @endforeach
-                                                    </select>
-                                                    @error('country_id')
-                                                        <span class="invalid-feedback" role="alert">
-                                                            <strong>{{ $message }}</strong>
-                                                        </span>
-                                                    @enderror
-                                                </div>
+                                            <div class="form-group form-float">
+                                                <label for="country_id">Country</label>
+                                                <select class="form-control js-example-basic-single @error('country_id') is-invalid @enderror" name="country_id" required>
+                                                    <option value="" selected disabled>Select</option>
+                                                    @foreach($countries as $country)
+                                                    <option value="{{ $country->id }}">{{ $country->name }}</option>
+                                                    @endforeach
+                                                </select>
+                                                @error('country_id')
+                                                    <span class="invalid-feedback" role="alert">
+                                                        <strong>{{ $message }}</strong>
+                                                    </span>
+                                                @enderror
+                                            </div>
                                             </div>
                                             <div class="col-md-2">
                                                 <div class="form-group">
-                                                    <label for="carrier_id"> Carrier </label>
+                                                    <label for="carrier_id">Carrier</label>
                                                     <select class="form-control js-example-basic-single @error('carrier_id') is-invalid @enderror" name="carrier_id" required>
-                                                        <option value=""selected disabled>Select</option>
+                                                        <option value="" selected disabled>Select</option>
                                                         @foreach($carriers as $carrier)
                                                         <option value="{{ $carrier->id }}">{{ $carrier->name }}</option>
                                                         @endforeach
@@ -78,9 +87,41 @@
                                             </div>
                                             <div class="col-md-2">
                                                 <div class="form-group">
-                                                    <label for="category_id"> Category </label>
+                                                    <label for="type_id">Carrier Type</label>
+                                                    <select class="form-control js-example-basic-single @error('type_id') is-invalid @enderror" name="type_id" required>
+                                                        <option value="" selected disabled>Select</option>
+                                                        @foreach($types as $type)
+                                                        <option value="{{ $type->id }}">{{ $type->name }}</option>
+                                                        @endforeach
+                                                    </select>
+                                                    @error('type_id')
+                                                        <span class="invalid-feedback" role="alert">
+                                                            <strong>{{ $message }}</strong>
+                                                        </span>
+                                                    @enderror
+                                                </div>
+                                            </div>
+                                            <div class="col-md-2">
+                                                <div class="form-group">
+                                                    <label for="file_id"> File </label>
+                                                    <select class="form-control js-example-basic-single @error('file') is-invalid @enderror" name="file_id" required>
+                                                        <option value="" selected disabled>Select</option>
+                                                        @foreach($files as $file)
+                                                        <option value="{{ $file->id }}">{{ $file->name }}</option>
+                                                        @endforeach
+                                                    </select>
+                                                    @error('file_id')
+                                                        <span class="invalid-feedback" role="alert">
+                                                            <strong>{{ $message }}</strong>
+                                                        </span>
+                                                    @enderror
+                                                </div>
+                                            </div>
+                                            <div class="col-md-2">
+                                                <div class="form-group">
+                                                    <label for="category_id">Category</label>
                                                     <select class="form-control js-example-basic-single @error('category') is-invalid @enderror" name="category_id" required>
-                                                        <option value=""selected disabled>Select</option>
+                                                        <option value="" selected disabled>Select</option>
                                                         @foreach($categories as $category)
                                                         <option value="{{ $category->id }}">{{ $category->name }}</option>
                                                         @endforeach
@@ -94,8 +135,8 @@
                                             </div>
                                         <div class="col-md-2">
                                             <div class="form-group">
-                                                <label for="price"> Amount</label>
-                                                <input type="number" name="price" class="form-control @error('price') is-invalid @enderror" id="price" placeholder="Price">
+                                                <label for="price">Amount</label>
+                                                <input type="text" name="price" class="form-control @error('price') is-invalid @enderror" id="price" min="1" placeholder="Price">
                                                 @error('price')
                                                 <span class="invalid-feedback" role="alert">
                                                     <strong>{{ $message }}</strong>
@@ -104,7 +145,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                 </div>   
+                                 </div>
                                 <div class="text-right">
                                     <a href="{{ route('pricing.index') }}" class="btn btn-danger"><i class="fas fa-times"></i> Back </a>
                                     <button type="submit" class="btn btn-primary"><i class="fas fa-save"></i> Submit </button>
@@ -122,10 +163,3 @@
 </section>
 @endsection
 
-@push('script')
-    <script type="text/javascript">
-        $(document).ready(function() {
-        $('.js-example-basic-single').select2();
-        });
-    </script>
-@endpush

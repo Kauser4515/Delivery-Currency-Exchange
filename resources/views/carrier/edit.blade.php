@@ -32,30 +32,45 @@
                     <div class="card">
                         <div class="card-header">
                             <h3 class="card-title mb-0">Edit Category</h3>
-                            <a class="btn btn-primary btn-sm" href="{{ route('category.index') }}"><i class="fa fa-plus"></i> All Categories</a>
+                            <a class="btn btn-primary btn-sm" href="{{ route('carrier.index') }}"><i class="fa fa-plus"></i> All Categories</a>
                         </div> 
                         <!-- /.card-header -->
                         <div class="card-body">
                             <div class="row justify-content-center">
                                 <div class="col-md-6">
-                                    <form role="form" action="{{ route('category.update', $categories->id) }}" method="POST">
+                                    <form role="form" action="{{ route('carrier.update', $carriers->id) }}" method="POST">
                                         @csrf
                                         @method('PATCH')
                                         <div class="container">
-                                            <div class="row">
-                                                <div class="col-md-11">
-                                                    <div class="form-group">
-                                                        <label for="name">Category Type (kg)<span class="text-danger">*</span></label>
-                                                        <input type="text" name="name" value="{{ $categories->name}}" class="form-control @error('name') is-invalid @enderror" id="name" placeholder="0-10 kg">
-                                                        @error('name')
-                                                        <span class="invalid-feedback" role="alert">
-                                                            <strong>{{ $message }}</strong>
-                                                        </span>
-                                                        @enderror
-                                                    </div>
+                                        <div class="row">
+                                            <div class="col-md-11">
+                                                <div class="form-group">
+                                                    <label for="name">Carrier Name<span class="text-danger">*</span></label>
+                                                    <input type="text" name="name" class="form-control @error('name') is-invalid @enderror" value="{{ $carriers->name}}" id="name" placeholder="Type...">
+                                                    @error('name')
+                                                    <span class="invalid-feedback" role="alert">
+                                                        <strong>{{ $message }}</strong>
+                                                    </span>
+                                                    @enderror
                                                 </div>
                                             </div>
-                                         </div>  
+                                        </div>
+                                     </div>  
+                                     <div class="container">
+                                        <div class="row">
+                                            <div class="col-md-11">
+                                                <div class="form-group">
+                                                    <label for="status">Carrier Status</label>
+                                                    <input type="number" name="status" class="form-control @error('status') is-invalid @enderror" value="{{ $carriers->status}}" id="status" max="1" min="0">
+                                                    @error('status')
+                                                    <span class="invalid-feedback" role="alert">
+                                                        <strong>{{ $message }}</strong>
+                                                    </span>
+                                                    @enderror
+                                                </div>
+                                            </div>
+                                        </div>
+                                     </div>
                                         <div class="text-right">
                                             <button type="submit" class="btn btn-primary"><i class="fas fa-save"></i> Submit </button>
                                         </div>
@@ -77,5 +92,4 @@
 
 @push('script')
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-
 @endpush

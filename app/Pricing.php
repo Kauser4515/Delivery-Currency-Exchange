@@ -20,6 +20,14 @@ class Pricing extends Model
 	    {
 	        return $this->belongsTo('App\Carrier');
 	    }
+	public function type()
+	    {
+	        return $this->belongsTo('App\Type');
+	    }
+	public function file()
+	    {
+	        return $this->belongsTo('App\File');
+	    }
 	public function category()
 	    {
 	        return $this->belongsTo('App\Category');

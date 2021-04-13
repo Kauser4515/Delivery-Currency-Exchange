@@ -1,14 +1,12 @@
 <!DOCTYPE html>
+<html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
-
     <title>{{ config('app.name', 'Calculator') }}</title>
-
 <!--Made with love by Mutiullah Samim -->
    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
     <!--Bootsrap 4 CDN-->
@@ -20,10 +18,9 @@
     <link rel="stylesheet" type="text/css" href="/../css/login.css">
 </head>
 <body>
-        <main class="py-4">
-            @yield('content')
-        </main>
-    
+    <main class="py-4">
+        @yield('content')
+    </main>
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 </body>

@@ -8,6 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Carrier extends Model
 {
+	protected $fillable = [
+        'name', 'status'
+    ];
     public function pricing()
 	    {
 	        return $this->hasMany('App\Pricing');
