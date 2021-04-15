@@ -80,15 +80,13 @@ class CarrierController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $carriers = Carrier::findOrFail($id);
         request()->validate([
             'name' => ['required'],
         ]);
-        $carrier = Carrier::find($request->id); //form id
-        $carrier->id = Request::input('id');
-        $carrier->name = Request::input('name');
-        $carrier->status = Request::input('name');
-        return $carrier;
-        $carrier->save();
+        $carriers->name = $request->name;
+        $carriers->status = $request->status;
+        $carriers->save();
 
         if (!empty($affected_row)) {
             $notification = array(

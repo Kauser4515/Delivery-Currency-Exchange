@@ -9,6 +9,7 @@ use App\Http\Controllers\Controller;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Storage;
 use Intervention\Image\Facades\Image;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -45,20 +46,21 @@ class UserController extends Controller
         request()->validate([
             'name' => ['required', 'max:50'],
             'email' => ['required', 'max:50'],
-            'password' => ['required', 'max:50'],
+            'password' => ['required', 'min:6', 'max:35'],
         ]);
             $user = new User();
             $user->name = $request->name;
             $user->phone = $request->phone;
             $user->email =$request->email;
-            $user->password =$request->password;
+            $user->password =Hash::make($request->password);
+
             //image upload
             if($request->hasfile('image'))
                 {
                 $file = $request->file('image');
                 $extension = $file->getClientOriginalExtension();
                 $filename =time().'.'.$extension;
-                $file->move('public/img/review/', $filename);
+                $file->move('public/img/', $filename);
                 $user->image = $filename;
             }
             $user->save();

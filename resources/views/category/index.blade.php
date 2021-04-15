@@ -28,8 +28,8 @@
             <div class="col-8">
                 <div class="card">
                     <div class="card-header">
-                        <h3 class="card-title mb-0">All Country</h3>
-                        <a class="btn btn-primary btn-sm" href="{{ route('category.create') }}"><i class="fa fa-plus"></i> Add New Country</a>
+                        <h3 class="card-title mb-0">All Categories</h3>
+                        <a class="btn btn-primary btn-sm" href="{{ route('category.create') }}"><i class="fa fa-plus"></i> Add New Category</a>
                     </div>
                     <!-- /.card-header -->
                     <div id="printable_area">
@@ -37,7 +37,7 @@
                             <thead>
                             <tr>
                                 <th>SL</th>
-                                <th>Country</th>
+                                <th>Category</th>
                                 <th>Action</th>
                             </tr>
                             </thead>

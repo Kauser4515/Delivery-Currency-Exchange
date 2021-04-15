@@ -45,7 +45,7 @@
                                         <div class="col-md-12">
                                             <div class="form-group">
                                                 <label for="name">Name<span class="text-danger">*</span></label>
-                                                <input type="text" name="name" class="form-control @error('name') is-invalid @enderror" id="name" placeholder="Enter name">
+                                                <input type="text" name="name" class="form-control @error('name') is-invalid @enderror" id="name" placeholder="Enter name" required>
                                                 @error('name')
                                                 <span class="invalid-feedback" role="alert">
                                                 <strong></strong>
@@ -75,7 +75,7 @@
                                         <div class="col-md-12">
                                             <div class="nav-item">
                                                 <label for="email">Email<span class="text-danger">*</span></label>
-                                                <input type="email" name="email" class="form-control @error('email') is-invalid @enderror" id="email" value="" placeholder="Enter email">
+                                                <input type="email" name="email" class="form-control @error('email') is-invalid @enderror" id="email" value="" placeholder="Enter email" required>
                                                 @error('email')
                                                 <span class="invalid-feedback" role="alert">
                                                 <strong></strong>
@@ -90,7 +90,7 @@
                                         <div class="col-md-12">
                                             <div class="form-group">
                                                 <label for="password">Password<span class="text-danger">*</span></label>
-                                                <input type="password" name="password" class="form-control @error('password') is-invalid @enderror" id="password" value="" placeholder="Enter password">
+                                                <input type="password" name="password" class="form-control @error('password') is-invalid @enderror" id="password" value="" placeholder="Enter password" required>
                                                 @error('password')
                                                 <span class="invalid-feedback" role="alert">
                                                 <strong></strong>

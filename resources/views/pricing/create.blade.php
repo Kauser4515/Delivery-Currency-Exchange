@@ -43,7 +43,8 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-header">
-                    <h3 class="card-title mb-0">Add New Country</h3>
+                    <h3 class="card-title mb-0">Add New Price</h3>
+                    <a class="btn btn-primary btn-sm" href="{{ route('pricing.index') }}"><i class="fa fa-plus"></i> All pricings</a>
                 </div>
                 <!-- /.card-header -->
                 <div class="card-body">
@@ -75,7 +76,9 @@
                                                     <select class="form-control js-example-basic-single @error('carrier_id') is-invalid @enderror" name="carrier_id" required>
                                                         <option value="" selected disabled>Select</option>
                                                         @foreach($carriers as $carrier)
+                                                        @if($carrier->status == 1)
                                                         <option value="{{ $carrier->id }}">{{ $carrier->name }}</option>
+                                                        @endif
                                                         @endforeach
                                                     </select>
                                                     @error('carrier_id')
@@ -147,7 +150,7 @@
                                     </div>
                                  </div>
                                 <div class="text-right">
-                                    <a href="{{ route('pricing.index') }}" class="btn btn-danger"><i class="fas fa-times"></i> Back </a>
+                                    <!-- <a href="{{ route('pricing.index') }}" class="btn btn-danger"><i class="fas fa-times"></i> Back </a> -->
                                     <button type="submit" class="btn btn-primary"><i class="fas fa-save"></i> Submit </button>
                                 </div>
                             </form>

@@ -9,6 +9,7 @@
   <meta name="_token" content="{{ csrf_token() }}">
   <link rel="shortcut icon" href="{{ asset('/favicon.ico') }}">
   <!-- plugin css -->
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.23/css/jquery.dataTables.min.css">
   <link rel="stylesheet" type="text/css" href="{{ asset('assets/plugins/@mdi/font/css/materialdesignicons.min.css') }}">
   <link rel="stylesheet" type="text/css" href="{{ asset('assets/plugins/perfect-scrollbar/perfect-scrollbar.css') }}">
   <!-- end plugin css -->
@@ -41,6 +42,7 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <script type="text/javascript" src="{{ asset('js/app.js') }}"></script>
   @stack('plugin-scripts')
+  
   <script type="text/javascript" src="{{ asset('assets/js/off-canvas.js') }}"></script>
   <script type="text/javascript" src="{{ asset('assets/js/hoverable-collapse.js') }}"></script>
   <script type="text/javascript" src="{{ asset('assets/js/dashboard.js') }}" ></script>

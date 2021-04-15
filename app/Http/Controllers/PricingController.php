@@ -16,7 +16,7 @@ class PricingController extends Controller
      */
     public function index()
     {
-        $pricings = Pricing::paginate(15);
+        $pricings = Pricing::orderBy('id', 'desc')->paginate(15);
         return view('pricing.index', compact('pricings'));
     }
     /**

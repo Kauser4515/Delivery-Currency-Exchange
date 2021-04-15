@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Category;
 use App\Country;
 use App\Pricing;
-
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
 class CategoryController extends Controller
@@ -80,14 +80,11 @@ class CategoryController extends Controller
      * @param  \App\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request,$id)
+    public function update(Request $request, $id)
     {
         $categories = Category::findOrFail($id);
-        $this->validate($request,[
-            'name' => 'required',
-        ]);
-        $category->name = $request->name;
-        $affected_row = $category->save();
+        $categories->name = $request->name;
+        $categories->save();
         if (!empty($affected_row)) {
             $notification = array(
                 'message' => 'Advance update successfully.',
