@@ -52,6 +52,11 @@ padding:4% 0 1%;
       display: ;
    }
 @media screen {
-   #printlogo {display: none;}
-   #printfooter {display: none;}
-              }
+  #printlogo {
+    display: none;
+  }
+  #printfooter {
+    display: none;
+  }
+}
+

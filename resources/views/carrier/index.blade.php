@@ -49,7 +49,7 @@
                                 <td>{{ $carrier->name }}</td>
                                 <td>{{ $carrier->status }}</td>
                                 <td>
-                                    <a href="{{ route('carrier.edit', $carrier->id) }}" class="btn btn-sm btn-warning"><i class="fas fa-save"></i></a>
+                                    <a href="{{ route('carrier.edit', $carrier->id) }}" class="btn btn-warning"><i class="menu-icon mdi mdi-border-color"></i></a>
                                 </td>
                             </tr>
                             @endforeach

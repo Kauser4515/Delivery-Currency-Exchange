@@ -42,19 +42,19 @@
             <a class="nav-link" href="{{ route('pricing.index') }}">Calculated Value</a>
           </li>
           <li class="nav-item ">
-            <a class="nav-link" href="{{ route('country.create') }}">Countries</a>
+            <a class="nav-link" href="{{ route('country.index') }}">Countries</a>
           </li>
           <li class="nav-item ">
-            <a class="nav-link" href="{{ route('carrier.create') }}">Carrier</a>
+            <a class="nav-link" href="{{ route('carrier.index') }}">Carrier</a>
           </li>
           <li class="nav-item ">
-            <a class="nav-link" href="{{ route('type.create') }}">Carrier Type</a>
+            <a class="nav-link" href="{{ route('type.index') }}">Carrier Type</a>
           </li>
           <li class="nav-item ">
-            <a class="nav-link" href="{{ route('file.create') }}">File Type</a>
+            <a class="nav-link" href="{{ route('file.index') }}">File Type</a>
           </li>
           <li class="nav-item ">
-            <a class="nav-link" href="{{ route('category.create') }}">Category</a>
+            <a class="nav-link" href="{{ route('category.index') }}">Category</a>
           </li>
         </ul>
       </div>

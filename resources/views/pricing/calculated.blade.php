@@ -82,7 +82,6 @@
                                                 <div class="form-group">
                                                     <label for="type_id">Carriers Type</label>
                                                     <select class="form-control js-example-basic-single @error('type_id') is-invalid @enderror" name="type_id">
-                                                        <option value="" selected disabled>Select</option>
                                                         @foreach($types as $type)
                                                         <option value="{{ $type->id }}">{{ $type->name }}</option>
                                                         @endforeach
@@ -159,7 +158,12 @@
                     </div>
                 </div><!-- /.card -->
                 <div class="row price" id="printableArea">
-                    <div id="printlogo"><img src="assets/images/a2i.PNG" width="111px" /><br><br></div>
+                    <div id="printlogo" class="row mt-5 mb-5">
+                    <div class="col-1"></div>
+                    <div class="col-2"><img src="assets/images/logo.d47954ce.PNG" width="130px" /></div>
+                    <div class="col-6"></div>
+                    <div class="col-2"><img src="assets/images/logo_bn.PNG" width="130px"/></div><br><br>
+                    </div>
                     <option>Country Name : {{ $count->name }}, </option>
                     <option>Carrier : {{ $carri->name }}, </option>
                     <option>Carrier Type: {{ $typ->name }}, </option>

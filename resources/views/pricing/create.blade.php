@@ -5,15 +5,19 @@
 @endpush
 @push('script')
     <!-- Select2  -->
-    <!-- <script type="text/javascript" src="{{ asset('js/jquery-3.5.1.min.js') }}"></script> -->
-    <link href="{{ asset('css/select2.min.css') }}" rel="stylesheet">
-    <script src="{{ asset('js/select2.min.js') }}"></script>
-    <script src="{{ asset('js/popper.min.js') }}"></script>
+<!-- <link href="{{ asset('css/select2.min.css') }}" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     <script type="text/javascript">
         $(document).ready(function() {
         $('.js-example-basic-single').select2();
         });
-    </script>
+    </script> -->
+<!--     <script>
+       function displayDivDemo(id, elementValue) {
+          document.getElementById(id).style.display = elementValue.value != 1 ? 'block' : 'none';
+       }
+    </script> -->
 @endpush
 
 @section('content')
@@ -73,7 +77,7 @@
                                             <div class="col-md-2">
                                                 <div class="form-group">
                                                     <label for="carrier_id">Carrier</label>
-                                                    <select class="form-control js-example-basic-single @error('carrier_id') is-invalid @enderror" name="carrier_id" required>
+                                                    <select nchange="displayDivDemo('hideValuesOnSelect', this)" class="form-control js-example-basic-single @error('carrier_id') is-invalid @enderror" name="carrier_id" required>
                                                         <option value="" selected disabled>Select</option>
                                                         @foreach($carriers as $carrier)
                                                         @if($carrier->status == 1)
@@ -88,7 +92,7 @@
                                                     @enderror
                                                 </div>
                                             </div>
-                                            <div class="col-md-2">
+                                            <div id="hideValuesOnSelect" class="col-md-2">
                                                 <div class="form-group">
                                                     <label for="type_id">Carrier Type</label>
                                                     <select class="form-control js-example-basic-single @error('type_id') is-invalid @enderror" name="type_id" required>

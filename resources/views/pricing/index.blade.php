@@ -49,7 +49,9 @@
                                 <td>{{ $pricing->id}} </td>
                                 <td>{{ $pricing->country->name }}</td>
                                 <td>{{ $pricing->carrier->name }}</td>
-                                <td>{{ $pricing->type->name }}</td>
+                                <td>@if($pricing->type_id != 0)
+                                        {{ $pricing->type->name }}
+                                    @endif</td>
                                 <td>{{ $pricing->file->name }}</td>
                                 <td>{{ $pricing->category->name }}</td>
                                 <td>{{ $pricing->price }}</td>

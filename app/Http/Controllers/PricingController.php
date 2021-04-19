@@ -17,6 +17,7 @@ class PricingController extends Controller
     public function index()
     {
         $pricings = Pricing::orderBy('id', 'desc')->paginate(15);
+        // dd ($pricings);
         return view('pricing.index', compact('pricings'));
     }
     /**
@@ -145,10 +146,13 @@ class PricingController extends Controller
             $result=curl_exec($ch);
             curl_close($ch);
             $rate= json_decode($result, true);
-            $BDT_from_USD= $rate['USD_BDT'];
-            $BDT= ($price*$BDT_from_USD)+1;
-
-            $price=round($BDT,0,PHP_ROUND_HALF_UP);
+            $BDT_from_USD= $price*$rate['USD_BDT'];
+            if($request->type_id==1){
+                $priceBD=$BDT_from_USD+$BDT_from_USD*(16.6/100);
+                $price=round($priceBD,0,PHP_ROUND_HALF_UP);
+            }else{
+                $price=round($BDT_from_USD,0,PHP_ROUND_HALF_UP);
+            }
         return view('pricing.calculated', compact('pricings', 'countries', 'categories', 'carriers', 'price', 'count', 'carri', 'categ', 'types', 'files', 'fil', 'typ'));
         }
         else
@@ -157,7 +161,6 @@ class PricingController extends Controller
         return view('pricing.calculated', compact('pricings', 'countries', 'categories', 'carriers', 'price', 'count', 'carri', 'categ', 'types', 'files','fil', 'typ'));
         }
     }
-
     public function calculateBy()
     {
        //

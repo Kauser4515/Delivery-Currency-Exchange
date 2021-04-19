@@ -45,9 +45,10 @@
                             @foreach($categories as $index => $category)
                             <tr>
                                 <td>{{ $category->id}}</td>
-                                <td><input type="text" name="name" class="form-control" value="{{ $category->name }}" id="name"> 
+                                <td>{{ $category->name }}
+                                    <!-- <input type="text" name="name" class="form-control" value="{{ $category->name }}" id="name"> --> 
                                 </td>
-                                 <td><a href="{{ route('category.edit', $category->id) }}" class="btn btn-sm btn-warning"><i class="fas fa-save"></i></a></td>
+                                 <td><a href="{{ route('category.edit', $category->id) }}" class="btn btn-warning"><i class="menu-icon mdi mdi-border-color"></i></a></td>
                             </tr>@endforeach
                             </tbody>
                             </table>  

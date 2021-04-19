@@ -42,10 +42,12 @@
                             </thead>
                             <tbody id="tbody">
                             @foreach($types as $index => $type)
+                            @if($type->id != 0)
                             <tr>
                                 <td>{{ $type->id}}</td>
                                 <td>{{ $type->name }}</td>
                             </tr>
+                            @endif
                             @endforeach
                             </tbody>
                             </table>  
