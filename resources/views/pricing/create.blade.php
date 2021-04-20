@@ -96,7 +96,6 @@
                                                 <div class="form-group">
                                                     <label for="type_id">Carrier Type</label>
                                                     <select class="form-control js-example-basic-single @error('type_id') is-invalid @enderror" name="type_id" required>
-                                                        <option value="" selected disabled>Select</option>
                                                         @foreach($types as $type)
                                                         <option value="{{ $type->id }}">{{ $type->name }}</option>
                                                         @endforeach

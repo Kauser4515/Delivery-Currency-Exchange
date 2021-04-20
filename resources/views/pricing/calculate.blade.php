@@ -16,16 +16,25 @@
     <script src="{{ asset('js/popper.min.js') }}"></script>
 </head>
 <body>
-<div class="content-header">
-    <div class="container-fluid">
-        <div class="row mb-2">
-            <div class="col-1"></div>
-            <div class="col-sm-6">
-                <!-- <h1 class="m-0 text-dark">Calculator</h1> -->
-            </div><!-- /.col -->
+    <div class="content-header">
+        <div class="container-fluid">
+            <!-- Start Logo -->
+            <div id="" class="row mtlogo">
+                    <div class="col-1"></div>
+                    <div class="col-2"><img src="assets/images/logo_bn1.PNG" class="left" /></div>
+                    <div class="col-6"></div>
+                    <div class="col-2"><img src="assets/images/a2i.PNG" class="right"/></div>
+                    <div class="col-1"></div>
+                    <br><br></div><!-- end logo div -->
+            <div class="row mb-2">
+                <!-- <div class="col-1"></div> -->
+                <div class="col-12">
+                    <h3 class="mt">Delivery Currency Exchange</h3>
+                    <!-- <h1 class="m-0 text-dark">Calculator</h1> -->
+                </div><!-- /.col -->
+            </div>
         </div>
     </div>
-</div>
 <section class="content">
     <div class="container-fluid">
         <!-- /.row -->

@@ -15,13 +15,21 @@
     <script src="js/select2.min.js"></script>
     <script src="{{ asset('js/popper.min.js') }}"></script>
 </head>
-    <!-- Content Header (Page header) -->
 <body>
     <div class="content-header">
         <div class="container-fluid">
+            <!-- Start Logo -->
+            <div id="" class="row mtlogo">
+                    <div class="col-1"></div>
+                    <div class="col-2"><img src="assets/images/logo_bn1.PNG" class="left"/></div>
+                    <div class="col-6"></div>
+                    <div class="col-2"><img src="assets/images/a2i.PNG" class="right"/></div>
+                    <div class="col-1"></div>
+                    <br><br></div><!-- end logo div -->
             <div class="row mb-2">
-                <div class="col-1"></div>
-                <div class="col-6">
+                <!-- <div class="col-1"></div> -->
+                <div class="col-12">
+                    <h3 class="mt">Delivery Currency Exchange</h3>
                     <!-- <h1 class="m-0 text-dark">Calculator</h1> -->
                 </div><!-- /.col -->
             </div>
@@ -157,21 +165,30 @@
                         </div>
                     </div>
                 </div><!-- /.card -->
-                <div class="row price" id="printableArea">
-                    <div id="printlogo" class="row mt-5 mb-5">
-                    <div class="col-1"></div>
-                    <div class="col-2"><img src="assets/images/logo.d47954ce.PNG" width="130px" /></div>
-                    <div class="col-6"></div>
-                    <div class="col-2"><img src="assets/images/logo_bn.PNG" width="130px"/></div><br><br>
-                    </div>
+                <div class="row price">
                     <option>Country Name : {{ $count->name }}, </option>
                     <option>Carrier : {{ $carri->name }}, </option>
                     <option>Carrier Type: {{ $typ->name }}, </option>
                     <option>File Type : {{ $fil->name }}, </option>
                     <option>Category : {{ $categ->name }}, </option>
                     <option class="total">Total Price : {{ $price }}</option>
-                    <div id="printfooter"><br><br><span class="text-muted d-block text-sm-left d-sm-inline-block">Copyright © EkShop | a2i {{ date('Y')  }}</span></div>
                 </div><br>
+                <div class="printfooter" id="printableArea">
+                    <div id="printlogo" class="row mt-5 mb-5">
+                    <div class="col-1"></div>
+                    <div class="col-2"><img src="assets/images/logo_bn.PNG" width="130px" /></div>
+                    <div class="col-6"></div>
+                    <div class="col-2"><img src="assets/images/logo.d47954ce.PNG" width="130px"/></div><br><br></div>
+                    <div class="printfont">
+                    <option>Country Name : {{ $count->name }},</option>
+                    <option>Carrier : {{ $carri->name }}, </option>
+                    <option>Carrier Type: {{ $typ->name }}, </option>
+                    <option>File Type : {{ $fil->name }}, </option>
+                    <option>Category : {{ $categ->name }}, </option>
+                    <option id="ptinttotal">Total Price : {{ $price }}</option>
+                    </div>
+                    <br><br><span class="text-muted d-block text-sm-left d-sm-inline-block">Copyright © EkShop | a2i {{ date('Y')  }}</span>
+                </div>
                 <input class="btn btn-success" type="button" onclick="printDiv('printableArea')" value="print" />
                  <div class="modal fade" id="myModal">
                     <div class="modal-dialog modal-dialog-centered">
