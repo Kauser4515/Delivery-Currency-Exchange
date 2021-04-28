@@ -47,7 +47,13 @@
                             <tr>
                                 <td>{{ $carrier->id}}</td>
                                 <td>{{ $carrier->name }}</td>
-                                <td>{{ $carrier->status }}</td>
+                                <td>
+                                     @if($carrier->status == 1)
+                                        <span class="badge bg-success">Active</span>
+                                    @else
+                                        <span class="badge bg-danger">Block</span>
+                                    @endif
+                                </td>
                                 <td>
                                     <a href="{{ route('carrier.edit', $carrier->id) }}" class="btn btn-warning"><i class="menu-icon mdi mdi-border-color"></i></a>
                                 </td>

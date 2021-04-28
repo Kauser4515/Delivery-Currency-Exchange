@@ -60,14 +60,17 @@
                                         <div class="row">
                                             <div class="col-md-11">
                                                 <div class="form-group">
-                                                    <label for="status">Carrier Status</label>
-                                                    <input type="number" name="status" class="form-control @error('status') is-invalid @enderror" id="status" max="1" min="0">
-                                                    @error('status')
-                                                    <span class="invalid-feedback" role="alert">
-                                                        <strong>{{ $message }}</strong>
-                                                    </span>
-                                                    @enderror
-                                                </div>
+                                                        <label for="status">Carrier Status</label>
+                                                        <select class="form-control @error('status') is-invalid @enderror" name="status">
+                                                            <option value="1">Active</option>
+                                                            <option value="0">Inactive</option>
+                                                        </select>
+                                                        @error('status')
+                                                            <span class="invalid-feedback" role="alert">
+                                                                <strong>{{ $message }}</strong>
+                                                            </span>
+                                                        @enderror
+                                                    </div>
                                             </div>
                                         </div>
                                      </div>        

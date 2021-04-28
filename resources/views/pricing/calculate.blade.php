@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-<head> 
+<head>  
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -20,17 +20,16 @@
         <div class="container-fluid">
             <!-- Start Logo -->
             <div id="" class="row mtlogo">
-                    <div class="col-1"></div>
-                    <div class="col-2"><img src="assets/images/logo_bn1.PNG" class="left" /></div>
-                    <div class="col-6"></div>
-                    <div class="col-2"><img src="assets/images/a2i.PNG" class="right"/></div>
-                    <div class="col-1"></div>
-                    <br><br></div><!-- end logo div -->
-            <div class="row mb-2">
+                <div class="col-1"></div>
+                <div class="col-2"><img src="assets/images/logo_bn1.PNG" class="left" /></div>
+                <div class="col-6"></div>
+                <div class="col-2"><img src="assets/images/a2i.PNG" class="right"/></div>
+                <div class="col-1"></div>
+                <br><br></div><!-- end logo div -->
+                <div class="row mb-2">
                 <!-- <div class="col-1"></div> -->
                 <div class="col-12">
                     <h3 class="mt">Delivery Currency Exchange</h3>
-                    <!-- <h1 class="m-0 text-dark">Calculator</h1> -->
                 </div><!-- /.col -->
             </div>
         </div>
@@ -171,25 +170,12 @@
     $(document).ready(function() {
     $('.js-example-basic-single').select2();
     });
-</script>
-<!-- <script>
-    selectBy(){
-        var x = document.getElementById("carrier_id");
-    }
-    $(document).ready(function(){
-      if(x=1).click(function(){
-        $("sectopn").hide();
-      });
-      else{
-        $("sectopn").show();
-      };
-    });
-</script> -->
+</script><!-- This Script for Select2 Option -->
     <script>
        function displayDivDemo(id, elementValue) {
           document.getElementById(id).style.display = elementValue.value != 1 ? 'block' : 'none';
        }
-    </script>
+    </script><!-- This Script for Carrier Option (GPO) -->
 </body>
 <footer class="foot">
   <div class="container-fluid clearfix">

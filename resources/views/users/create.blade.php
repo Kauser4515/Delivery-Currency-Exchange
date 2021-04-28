@@ -113,7 +113,7 @@
                                   </div>
                                 </div><br>
                                 <div class="text-right">
-                                    <a href="" class="btn btn-danger"><i class="fas fa-times"></i> Cancel </a>
+                                    <!-- <a href="" class="btn btn-danger"><i class="fas fa-times"></i> Cancel </a> -->
                                     <button type="submit" class="btn btn-primary"><i class="fas fa-save"></i> Submit </button>
                                 </div>
                             </form>

@@ -1,25 +1,21 @@
 @extends('layouts.app')
 @section('title', 'Users')
-@push('script')
-    <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
-@endpush
+
 @push('script')
     <!-- Select2  -->
-<!-- <link href="{{ asset('css/select2.min.css') }}" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
-<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <script type="" src="{{ asset('js/jquery-3.5.1.min.js') }}"></script>
+    <script src="{{ asset('js/select2.min.js') }}"></script>
+    <script src="{{ asset('js/popper.min.js') }}"></script>
     <script type="text/javascript">
-        $(document).ready(function() {
-        $('.js-example-basic-single').select2();
-        });
-    </script> -->
-<!--     <script>
-       function displayDivDemo(id, elementValue) {
-          document.getElementById(id).style.display = elementValue.value != 1 ? 'block' : 'none';
-       }
-    </script> -->
+    $(document).ready(function() {
+    $('.js-example-basic-single').select2();
+    });
+</script><!-- This Script for Select2 Option -->
 @endpush
-
+@push('style')
+    <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
+    <link href="{{ asset('css/select2.min.css') }}" rel="stylesheet" />
+@endpush
 @section('content')
      
 <section class="content">
@@ -168,4 +164,10 @@
 </div><!-- /.container-fluid -->
 </section>
 @endsection
-
+@push('custom-scripts')
+    <script type="text/javascript">
+    $(document).ready(function() {
+    $('.js-example-basic-single').select2();
+    });
+</script>
+@endpush

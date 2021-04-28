@@ -16,9 +16,11 @@ class PricingController extends Controller
      */
     public function index()
     {
-        $pricings = Pricing::orderBy('id', 'desc')->paginate(15);
+        $pricings = Pricing::where('type_id', '=', 1)->paginate(15);
+        $prices = Pricing::where('type_id', '=', 2)->paginate(15);
+        $prics = Pricing::where('carrier_id', '=', 1)->paginate(15);
         // dd ($pricings);
-        return view('pricing.index', compact('pricings'));
+        return view('pricing.index', compact('pricings', 'prices', 'prics'));
     }
     /**
      * Show the form for creating a new resource.
@@ -148,7 +150,10 @@ class PricingController extends Controller
             $rate= json_decode($result, true);
             $BDT_from_USD= $price*$rate['USD_BDT'];
             if($request->type_id==1){
-                $priceBD=$BDT_from_USD+$BDT_from_USD*(16.6/100);
+                $priceBD=$BDT_from_USD+$BDT_from_USD*(31.5/100);
+                $price=round($priceBD,0,PHP_ROUND_HALF_UP);
+            }else if($request->type_id==2){
+                $priceBD=$BDT_from_USD+$BDT_from_USD*(16.5/100);
                 $price=round($priceBD,0,PHP_ROUND_HALF_UP);
             }else{
                 $price=round($BDT_from_USD,0,PHP_ROUND_HALF_UP);

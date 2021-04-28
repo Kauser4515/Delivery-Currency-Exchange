@@ -30,7 +30,7 @@
                                 <th>Phone</th>
                                 <th>Email Address</th>
                                 <th>User Role </th>
-                                <th>Actions</th>
+                                <!-- <th>Actions</th> -->
                             </tr>
                             </thead>
                             <tbody id="tbody">
@@ -48,9 +48,9 @@
                                         <span class="table-success"> User </span>
                                     @endif
                                 </td>
-                                <td>
+                                <!-- <td>
                                     <a href="{{ route('admin.user.edit', $user->id) }}" class="btn btn-sm btn-warning"><span class="mdi mdi-lead-pencil"></span></a>
-                                </td>
+                                </td> -->
                             </tr>
                             @endforeach
                             </tbody>

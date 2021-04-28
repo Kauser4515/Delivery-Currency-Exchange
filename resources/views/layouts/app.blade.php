@@ -49,6 +49,8 @@
   <script type="text/javascript" src="{{ asset('assets/js/misc.js') }}"></script>
   <script type="text/javascript" src="{{ asset('assets/js/settings.js') }}"></script>
   <script type="text/javascript" src="{{ asset('assets/js/todolist.js') }}"></script>
+  <script src="http://cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+        <script src="http://cdn.bootcss.com/toastr.js/latest/js/toastr.min.js"></script>
   @endpush
   @stack('custom-scripts')
   @stack('script')

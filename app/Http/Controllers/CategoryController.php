@@ -6,8 +6,9 @@ use App\Category;
 use App\Country;
 use App\Pricing;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
-
+// use Brian2694\Toastr\Facades\Toastr;
 class CategoryController extends Controller
 {
     /**
@@ -17,7 +18,7 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $categories = Category::all();
+        $categories = Category::orderBy('id', 'ASC')->paginate(15);
         return view('category.index', compact('categories'));
     }
 
@@ -96,7 +97,8 @@ class CategoryController extends Controller
                 'alert-type' => 'error'
             );
         }
-        return redirect()->back()->with($notification);
+        // Toastr::success('Carrier Successfully Saved :)' ,'Success');
+        return redirect()->route('category.index');
     }
 
     /**

@@ -20,17 +20,16 @@
         <div class="container-fluid">
             <!-- Start Logo -->
             <div id="" class="row mtlogo">
-                    <div class="col-1"></div>
-                    <div class="col-2"><img src="assets/images/logo_bn1.PNG" class="left"/></div>
-                    <div class="col-6"></div>
-                    <div class="col-2"><img src="assets/images/a2i.PNG" class="right"/></div>
-                    <div class="col-1"></div>
-                    <br><br></div><!-- end logo div -->
+                <div class="col-1"></div>
+                <div class="col-2"><img src="assets/images/logo_bn1.PNG" class="left"/></div>
+                <div class="col-6"></div>
+                <div class="col-2"><img src="assets/images/a2i.PNG" class="right"/></div>
+                <div class="col-1"></div>
+                <br><br></div><!-- end logo div -->
             <div class="row mb-2">
                 <!-- <div class="col-1"></div> -->
                 <div class="col-12">
                     <h3 class="mt">Delivery Currency Exchange</h3>
-                    <!-- <h1 class="m-0 text-dark">Calculator</h1> -->
                 </div><!-- /.col -->
             </div>
         </div>
@@ -148,8 +147,6 @@
                                                 <div class="form-group"><br>
                                                     <button type="submit" onclick="" class="btn btn-success">=</button>
                                                 </div>
-                                                  <!-- <button type="submit" class="btn btn-primary" data-toggle="modal" data-target="#myModal">modal
-                                                  </button> -->
                                             </div>
                                             <div class="col-md-5"></div>
                                             <div class="col-md-2">
@@ -173,7 +170,7 @@
                     <option>Category : {{ $categ->name }}, </option>
                     <option class="total">Total Price : {{ $price }}</option>
                 </div><br>
-                <div class="printfooter" id="printableArea">
+                <div class="printfooter" id="printableArea"><!--This Div For Printing -->
                     <div id="printlogo" class="row mt-5 mb-5">
                     <div class="col-1"></div>
                     <div class="col-2"><img src="assets/images/logo_bn.PNG" width="130px" /></div>
@@ -189,41 +186,15 @@
                     </div>
                     <br><br><span class="text-muted d-block text-sm-left d-sm-inline-block">Copyright © EkShop | a2i {{ date('Y')  }}</span>
                 </div>
-                <input class="btn btn-success" type="button" onclick="printDiv('printableArea')" value="print" />
-                 <div class="modal fade" id="myModal">
-                    <div class="modal-dialog modal-dialog-centered">
-                      <div class="modal-content">
-                        <!-- Modal Header -->
-                        <div class="modal-header">
-                          <h4 class="modal-title">Calculated Value</h4>
-                          <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        </div>
-                        <!-- Modal body -->
-                        <div class="modal-body">
-                            <div class="">
-                                <!-- <option  value="">Country Name:, </option> -->
-                                <option value="">Carrier Name: , </option>
-                                <option value="">Category: , </option>
-                                <option >Total Price: .</option>
-                            </div><br>
-                        </div>
-                        <!-- Modal footer -->
-                        <div class="modal-footer">
-                            
-                          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        </div>
-
-                      </div>
-                    </div>
-                  </div>
+                <input class="btn btn-success" type="button" onclick="printDiv('printableArea')" value="print" /><!-- Print Button -->
             </div>
         </div><!-- /.row -->
     </div><!-- /.container-fluid -->
-<script type="text/javascript">
-    $(document).ready(function() {
-    $('.js-example-basic-single').select2();
-    });
-</script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+        $('.js-example-basic-single').select2();
+        });
+    </script><!-- This Script for Select2 Option -->
 </section>
     <script type="text/javascript">
         function printDiv(divName) {
@@ -236,12 +207,12 @@
 
      document.body.innerHTML = originalContents;
 }
-    </script>
+    </script><!-- This Script for Printing -->
     <script>
        function displayDivDemo(id, elementValue) {
           document.getElementById(id).style.display = elementValue.value != 1 ? 'block' : 'none';
        }
-    </script>
+    </script><!-- This Script for Carrier Option (GPO) -->
 </body>
 <footer class="footer" id="printable_area">
   <div class="container-fluid clearfix">

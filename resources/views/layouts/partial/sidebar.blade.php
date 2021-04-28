@@ -39,7 +39,7 @@
       <div class="collapse " id="Attendance-pages">
         <ul class="nav flex-column sub-menu">
           <li class="nav-item ">
-            <a class="nav-link" href="{{ route('pricing.index') }}">Calculated Value</a>
+            <a class="nav-link" href="{{ route('pricing.index') }}">Pricing Value</a>
           </li>
           <li class="nav-item ">
             <a class="nav-link" href="{{ route('country.index') }}">Countries</a>

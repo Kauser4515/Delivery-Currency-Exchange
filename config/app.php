@@ -179,6 +179,7 @@ return [
         Barryvdh\Debugbar\ServiceProvider::class,
         Yajra\DataTables\DataTablesServiceProvider::class,
         Fadion\Fixerio\ExchangeServiceProvider::class
+        Brian2694\Toastr\ToastrServiceProvider::class,
     ],
 
     /*
@@ -230,6 +231,7 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
         'Exchange' => Fadion\Fixerio\Facades\Exchange::class
+        'Toastr'  => Brian2694\Toastr\Facades\Toastr::class,
     ],
 
 ];

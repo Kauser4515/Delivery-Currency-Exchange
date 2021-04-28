@@ -28,7 +28,7 @@
             <div class="col-8">
                 <div class="card">
                     <div class="card-header">
-                        <h3 class="card-title mb-0">All Categories</h3>
+                        <h3 class="card-title mb-0">All Categories (weight)</h3>
                         <a class="btn btn-primary btn-sm" href="{{ route('category.create') }}"><i class="fa fa-plus"></i> Add New Category</a>
                     </div>
                     <!-- /.card-header -->
@@ -50,8 +50,14 @@
                                 </td>
                                  <td><a href="{{ route('category.edit', $category->id) }}" class="btn btn-warning"><i class="menu-icon mdi mdi-border-color"></i></a></td>
                             </tr>@endforeach
+                            
                             </tbody>
                             </table>  
+                            <div class="card-footer clearfix">
+                            <ul class="pagination pagination-sm m-0 float-right">
+                                {{ $categories->links() }}
+                            </ul>
+                        </div> 
                         </div>                          
                     </div>
                 </div>
